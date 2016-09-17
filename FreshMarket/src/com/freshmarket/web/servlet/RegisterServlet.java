@@ -65,9 +65,8 @@ public class RegisterServlet extends HttpServlet {
 		try {
 			//没有异常：输出注册成功！
 			service.register(form);
-			//如果service处理成功，就跳转到网站的全局消息显示页面，为用户注册成功的消息，3秒后跳转到登陆页面
-			request.setAttribute("message", "恭喜你，注册成功!!浏览器将在3秒后跳转到首页，如果没有跳转请点击：<a href='"+request.getContextPath()+"/login.jsp'>登陆</a> <meta http-equiv='refresh' content='3;url="+request.getContextPath()+"/login.jsp'>");
-			request.getRequestDispatcher("/message.jsp").forward(request, response);
+			//如果service处理成功，就跳转到网站的全局消息显示页面，为用户注册成功的消息，10秒后跳转到登陆页面
+			response.sendRedirect(request.getContextPath()+"/successRegister.jsp");
 		} catch (UserException e) {
 			//得到异常：获取异常信息，保存到request域，转发到regist.jsp中显示
 			// 获取异常信息，保存到request域

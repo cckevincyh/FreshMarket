@@ -52,4 +52,17 @@
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
+  
+  <!-- 错误404页面 -->
+  <error-page>  
+    <error-code>404</error-code>  
+    <location>/error/400.jsp</location>  
+</error-page>  
+   <!-- 错误500页面 -->
+<error-page>  
+    <error-code>500</error-code>  
+    <location>/error/500.jsp</location>  
+</error-page>  
+      
+
 </web-app>
