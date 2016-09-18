@@ -1,6 +1,7 @@
 package com.freshmarket.utils;
 
 import java.util.Enumeration;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -32,5 +33,14 @@ public class WebUtils {
 			throw new RuntimeException(e);
 		}
 		
+	}
+	
+	
+	/**
+	 * 产生全球唯一的id
+	 * @return 全球唯一的id
+	 */
+	public static String generateID(){
+		return UUID.randomUUID().toString();
 	}
 }

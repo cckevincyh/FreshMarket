@@ -4,6 +4,7 @@ import com.freshmarket.dao.UserDao;
 import com.freshmarket.dao.factory.DaoFactory;
 import com.freshmarket.domain.User;
 import com.freshmarket.utils.ServiceUtils;
+import com.freshmarket.utils.WebUtils;
 
 
 public class UserService {
@@ -22,6 +23,8 @@ public class UserService {
 		//若不为null说明可以注册
 		//md5加密密码
 		form.setUserpassword(ServiceUtils.md5(form.getUserpassword()));
+		//给User对象添加uuid做userid
+		form.setUserid(WebUtils.generateID());
 		//添加User对象
 		userDao.addUser(form);
 		

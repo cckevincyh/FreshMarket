@@ -36,6 +36,9 @@ body{
 	text-align:center;
 	padding:1.3em;
 }
+
+
+
 .header h1 {
 	color:#272727;
 	font-weight:700;
@@ -119,7 +122,7 @@ form{
 }
 .right-form input[type=submit]{
   float:left;
-  padding:8px 45px;/*按钮的大小高度和宽度*/
+  padding:8px 150px;/*按钮的大小高度和宽度*/
   border-radius:0.3em;
   border:none;
   outline:none;
@@ -133,7 +136,7 @@ form{
   -moz-transition: all 0.5s ease-out;
   -ms-transition: all 0.5s ease-out;
   -o-transition: all 0.5s ease-out;
-  margin: 2em 13.5em;/*第二个参数改动按钮位置*/
+  margin: 2em 0em;/*第二个参数改动按钮位置*/
   cursor: pointer;
 }
  input[type=submit]:hover {

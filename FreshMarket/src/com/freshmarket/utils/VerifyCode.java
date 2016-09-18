@@ -15,8 +15,8 @@ import javax.imageio.ImageIO;
  *
  */
 public class VerifyCode {
-	private int w = 80;
-	private int h = 30;
+	private int w = 100;
+	private int h = 40;
  	private Random r = new Random();
 	private String[] fontNames  = {"宋体", "华文楷体", "黑体", "华文新魏", "华文隶书", "微软雅黑", "楷体_GB2312"};
 	private String codes  = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";

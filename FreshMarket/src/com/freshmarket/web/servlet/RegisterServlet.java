@@ -20,11 +20,11 @@ public class RegisterServlet extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html;charset=UTF-8");
 		UserService service = new UserService();
 		//封装表单数据（封装到User对象中）
 		User form = WebUtils.request2Bean(request, User.class);
+		
+		
 		//封装表单数据（封装到RegisterForm对象中）
 		RegisterForm registerForm = WebUtils.request2Bean(request, RegisterForm.class);
 		
@@ -76,11 +76,11 @@ public class RegisterServlet extends HttpServlet {
 			request.setAttribute("registerForm", registerForm);//用来在表单中回显！
 			// 转发到regist.jsp
 			request.getRequestDispatcher("/register.jsp").forward(request, response);
+			return ;
 		}catch(Exception e){
 			//如果service处理不成功，并且不成功的原因是其他问题的话，就跳到网站的全局消息显示页面，为用户显示友好错误消息
-			request.setAttribute("message", "服务器出现未知错误!!");
-			request.getRequestDispatcher("/message.jsp").forward(request, response);
-			return ;
+			response.sendRedirect(request.getContextPath()+"/error/500.jsp");
+			
 		}
 		
 		

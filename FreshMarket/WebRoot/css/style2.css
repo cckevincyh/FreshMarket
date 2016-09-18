@@ -58,22 +58,12 @@ body{
 	color:#3F3D3D;
 }
 
-.left-form,.right-form{
+.right-form{
 	float:left;
-	margin:22px 290px;
-	width:40%;
+	margin:22px 350px;/*改动中间的登陆界面的位置*/
+	width:30%;/*改变宽度*/
 }
-.left-form input[type=text],.left-form input[type=email],.left-form input[type=password] {
-	float:left;
-	font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	width:70%;/*更改文本框的宽度大小*/
-	padding: 0.7em 2em 0.7em 1em;
-	border:none;
-	color: #000;
-	font-size:15px;
-	float: left;
-	outline: none;
-}
+
 .right-form{
 	float:right;
 }
@@ -100,21 +90,24 @@ form{
   	outline:none;
 
 }
-.left-form li{
-	display:block;
-	color:#4D4949;
-	border:1px solid #EBEBEB;
-	border-radius: 0.3em;
-	-webkit-border-radius:0.3em;
-  	-moz-border-radius:0.3em;
- 	 -o-border-radius:0.3em;
- 	 margin-bottom: 10px;
+
+.icon
+{
+	height:28px;
+	width:28px;
+	background:url(../images/spirit.png)  no-repeat;
+	display: block;
+	float: right;
+	margin: 7px 9px 9px 0px;
+}
+.ticker{
+	background:url(../images/spirit.png)  no-repeat 0px 0px;
+}
+.into{
+	background:url(../images/spirit.png)  no-repeat -31px 0px;
 }
 
 
-.left-form submit{
-	float:left;
-}
 .right-form submit{
 	float:right;
 }
@@ -124,30 +117,9 @@ form{
 	font-weight: 600;
 	color:#363535;
 }
-.left-form input[type=submit]{
-  padding:10px 50px;
-  border-radius:0.3em;
- -webkit-border-radius:0.3em;
-  -moz-border-radius:0.3em;
-  -o-border-radius:0.3em;
-   color:#4D4949;
-  background:#F3F3F3;
-  border:1px solid #EBEBEB;
-  font-weight:bold;
-  font-size:15px;
-  outline:none;
-  transition: all 0.5s ease-out;
-  -webkit-transition: all 0.5s ease-out;
-  -moz-transition: all 0.5s ease-out;
-  -ms-transition: all 0.5s ease-out;
-  -o-transition: all 0.5s ease-out;
-  margin-top:15px;
-  cursor: pointer;
-   margin: 2em 21em;/*第二个参数改动按钮位置*/
-}
 .right-form input[type=submit]{
   float:left;
-  padding:8px 19px;
+  padding:8px 150px;/*按钮的大小高度和宽度*/
   border-radius:0.3em;
   border:none;
   outline:none;
@@ -161,7 +133,7 @@ form{
   -moz-transition: all 0.5s ease-out;
   -ms-transition: all 0.5s ease-out;
   -o-transition: all 0.5s ease-out;
-  margin: 2em -9em;
+  margin: 2em 0em;/*第二个参数改动按钮位置*/
   cursor: pointer;
 }
  input[type=submit]:hover {
@@ -344,11 +316,7 @@ input[type=checkbox].css-checkbox10:checked + label i.css-label10 {
 	.right-form li{
 	margin-left:40px;
 	}
-	.left-form input[type=submit] {
-	padding: 12px 12px;
-	float: right;
-	margin: 2px 0px;
-	}
+
 	.main h4 {
 	float:left;
 	margin: 7px 36px;
@@ -402,14 +370,10 @@ input[type=checkbox].css-checkbox10:checked + label i.css-label10 {
 	.right-form li{
 	margin-left:16px;
 	}
-	.left-form input[type=submit] {
-	padding: 12px 12px;
-	text-align:center;
-	float: none;
-	}
+
 	.main h4 {
 	float:left;
-	margin: 7px 17px;
+	margin: 100px 17px;
 	}
 	.right-form input[type=submit] {
 	float: right;
@@ -456,11 +420,7 @@ input[type=checkbox].css-checkbox10:checked + label i.css-label10 {
 	.right-form li{
 	margin-left:16px;
 	}
-	.left-form input[type=submit] {
-	padding: 12px 12px;
-	text-align:center;
-	margin:9px 0px;
-	}
+
 	.main h4 {
 	float:left;
 	margin: 7px 17px;
@@ -508,11 +468,7 @@ input[type=checkbox].css-checkbox10:checked + label i.css-label10 {
 	.right-form li{
 	margin-left:-5px;
 	}
-	.left-form input[type=submit] {
-	padding: 12px 12px;
-	text-align:center;
-	margin:9px 0px;
-	}
+
 	.main h4 {
 	float:left;
 	margin: 7px 17px;

@@ -3,11 +3,18 @@ package com.freshmarket.domain;
 
 public class User {
 	
+	private String userid;//用户id
 	private String username;//用户名
 	private String userpassword;//密码
 	private int usertype;//用户类型(管理员or注册用户)
-	private int userstatus;//登陆状态(已登陆or未登陆)
 
+	public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
 	public String getUsername() {
 		return username;
 	}
@@ -32,21 +39,15 @@ public class User {
 		this.usertype = usertype;
 	}
 
-	public int getUserstatus() {
-		return userstatus;
-	}
 
-	public void setUserstatus(int userstatus) {
-		this.userstatus = userstatus;
-	}
 
-	public User(String username, String userpassword, int usertype,
-			int userstatus) {
+	public User(String userid, String username, String userpassword,
+			int usertype) {
 		super();
+		this.userid = userid;
 		this.username = username;
 		this.userpassword = userpassword;
 		this.usertype = usertype;
-		this.userstatus = userstatus;
 	}
 
 	public User() {
