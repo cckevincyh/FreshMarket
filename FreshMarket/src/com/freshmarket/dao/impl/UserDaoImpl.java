@@ -21,8 +21,8 @@ private QueryRunner qr = new TxQueryRunner();
 	public void addUser(User form) {
 		
 		try {
-			String sql = "INSERT INTO USERS VALUES(?,?,?,?)";
-			Object[] params = {form.getUserid(),form.getUsername(),form.getUserpassword(),form.getUsertype()};
+			String sql = "INSERT INTO USERS(`username`,`password`) VALUES(?,?)";
+			Object[] params = {form.getUsername(),form.getPassword()};
 			qr.update(sql,params);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

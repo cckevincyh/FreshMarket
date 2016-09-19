@@ -6,8 +6,8 @@ import java.util.Map;
 
 public class RegisterForm {
 	private String username;
-	private String userpassword;
-	private String userpassword2;
+	private String password;
+	private String password2;
 	private String verifyCode;//验证码
 	
 	public String getVerifyCode() {
@@ -22,7 +22,9 @@ public class RegisterForm {
 
 	private Map<String,String> errors = new HashMap<String, String>() ;	//存放错误集合
 	
-	
+
+
+
 	public String getUsername() {
 		return username;
 	}
@@ -33,23 +35,25 @@ public class RegisterForm {
 	}
 
 
-	public String getUserpassword() {
-		return userpassword;
+	public String getPassword() {
+		return password;
 	}
 
 
-	public void setUserpassword(String userpassword) {
-		this.userpassword = userpassword;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 
-	public String getUserpassword2() {
-		return userpassword2;
+	public String getPassword2() {
+		return password2;
 	}
 
 
-	public void setUserpassword2(String userpassword2) {
-		this.userpassword2 = userpassword2;
+
+
+	public void setPassword2(String password2) {
+		this.password2 = password2;
 	}
 
 
@@ -80,23 +84,23 @@ public class RegisterForm {
 			}
 		}
 		
-		if(this.userpassword==null || this.userpassword.trim().equals("")){
+		if(this.password==null || this.password.trim().equals("")){
 			isOK = false;
-			errors.put("userpassword", "密码不能为空!!");
+			errors.put("password", "密码不能为空!!");
 		}else{
-			if(userpassword.length() < 3 || userpassword.length() > 15){
+			if(password.length() < 3 || password.length() > 15){
 				isOK = false;
-				errors.put("userpassword", "密码长度必须在3~15之间!!");
+				errors.put("password", "密码长度必须在3~15之间!!");
 			}
 		}
 		
-		if(this.userpassword2==null || this.userpassword2.trim().equals("")){
+		if(this.password2==null || this.password2.trim().equals("")){
 			isOK = false;
-			errors.put("userpassword", "确认密码不能为空!!");
+			errors.put("password", "确认密码不能为空!!");
 		}else{
-			if(!this.userpassword2.equals(this.userpassword)){
+			if(!this.password2.equals(this.password)){
 				isOK = false;
-				errors.put("userpassword2", "两次密码要一致!!");
+				errors.put("password2", "两次密码要一致!!");
 			}
 		}
 	

@@ -46,13 +46,13 @@
                       
                       <span style="color:#F00">${errors.username }</span>
                       
-					  <li> <input type="password" name="userpassword" value="${registerForm.userpassword }" placeholder="请输入密码" required/>
+					  <li> <input type="password" name="password" value="${registerForm.userpassword }" placeholder="请输入密码" required/>
 					  </li>
                       
                       <span style="color:#F00">${errors.userpassword }</span>
                       
                       
-                      <li><input type="password" name="userpassword2"  value="${registerForm.userpassword2 }"  placeholder="请输入确认密码"  required"/>
+                      <li><input type="password" name="password2"  value="${registerForm.userpassword2 }"  placeholder="请输入确认密码"  required"/>
                     	
 					  </li>
                       <span style="color:#F00">${errors.userpassword2 } </span>

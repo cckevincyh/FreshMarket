@@ -1,4 +1,5 @@
 <Context>
+<!-- jdni的配置 -->
 <Resource name="jdbc/FreshMarket"
 	type="com.mchange.v2.c3p0.ComboPooledDataSource"
 	factory="org.apache.naming.factory.BeanFactory"
@@ -10,4 +11,17 @@
 	minPoolSize ="5"
 	initialPoolSize="10"
 	acquireIncrement="2"/>
+	
+	<!-- 
+	当网站有大量用户访问的时候，服务器会创建大量的session，
+	会占用大量的服务器内存资源，当用户开着浏览器一分钟不操作页面的话建议将session钝化
+	 -->
+	 
+	<!-- session钝化的配置 -->
+	 <Manager className="org.apache.catalina.session.PersistentManager"  
+        maxIdleSwap="1">  
+        <Store className="org.apache.catalina.session.FileStore"  
+            directory="cjq" />  
+    </Manager>  
+	
 </Context>  
