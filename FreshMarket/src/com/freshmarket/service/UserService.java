@@ -3,6 +3,7 @@ package com.freshmarket.service;
 import com.freshmarket.dao.UserDao;
 import com.freshmarket.dao.factory.DaoFactory;
 import com.freshmarket.domain.User;
+import com.freshmarket.exception.UserException;
 import com.freshmarket.utils.ServiceUtils;
 import com.freshmarket.utils.WebUtils;
 
@@ -15,6 +16,7 @@ public class UserService {
 	public void register(User form) throws UserException{
 		//1.校验用户名
 		User user = userDao.findByUsername(form.getUsername());
+		String password = form.getPassword();//保存未加密的密码
 		//2.查看user对象是否为null，如果不为null说明用户已经注册过了，抛出异常（异常信息为：用户名已被注册！）
 		if(user!=null){
 			throw new UserException("用户名已被注册!!");
@@ -33,6 +35,7 @@ public class UserService {
 	public User login(User form) throws UserException{
 		//1.使用form的username进行校验
 		User user = userDao.findByUsername(form.getUsername());
+		String password = form.getPassword();//保存未加密的密码
 		//2.判断user是否为null，若为null，说明用户名错误，所以抛出异常
 		if(user==null){
 			throw new UserException("用户不存在!!");
@@ -42,6 +45,7 @@ public class UserService {
 		
 		 //3.判断form和user密码是否相同,若不同，说明密码错误，所以抛出异常
 		if(!user.getPassword().equals(form.getPassword())){
+			form.setPassword(password);//设置为原来未加密的密码
 			throw new UserException("用户名或密码错误!!");
 		}
 		//4.若执行到这里，说明没有错误，登录成功了，返回当前user对象

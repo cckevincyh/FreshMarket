@@ -45,7 +45,7 @@
 					<div>
 					  <li><input type="text"  name="username"  value="${user.username }" placeholder="请输入用户名" required/>
 					  </li>
-					  <li> <input type="password" name="password" value="${user.userpassword }"placeholder="请输入密码" required/>
+					  <li> <input type="password" name="password" value="${user.password }"placeholder="请输入密码" required/>
 					   	
 					  </li>
 						<span style="color:#F00">${errorMessage }</span>

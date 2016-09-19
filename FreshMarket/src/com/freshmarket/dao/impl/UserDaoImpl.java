@@ -11,7 +11,7 @@ import com.freshmarket.domain.User;
 
 public class UserDaoImpl implements UserDao{
 
-private QueryRunner qr = new TxQueryRunner();
+	private QueryRunner qr = new TxQueryRunner();
 	
 
 	/**

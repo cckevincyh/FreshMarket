@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 import com.freshmarket.domain.User;
-import com.freshmarket.service.UserException;
+import com.freshmarket.exception.UserException;
 import com.freshmarket.service.UserService;
 import com.freshmarket.utils.WebUtils;
 
