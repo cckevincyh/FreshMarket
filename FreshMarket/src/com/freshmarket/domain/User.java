@@ -2,8 +2,10 @@ package com.freshmarket.domain;
 
 import java.io.Serializable;
 
-
-public class User implements Serializable{	
+/**
+ * 用户类
+ */
+public class User implements Serializable{	//实现序列化是因为设置了session钝化
 	
 	private int userID;			//用户编号
 	private String username;		//用户名
@@ -13,23 +15,6 @@ public class User implements Serializable{
 	private String phone;			//联系电话
 	private String email;			//Email地址
 	
-	
-	
-	public User() {
-
-	}
-
-	public User(int userID, String username, String password, String sex,
-			String address, String phone, String email) {
-		super();
-		this.userID = userID;
-		this.username = username;
-		this.password = password;
-		this.sex = sex;
-		this.address = address;
-		this.phone = phone;
-		this.email = email;
-	}
 
 	public int getUserID() {
 		return userID;

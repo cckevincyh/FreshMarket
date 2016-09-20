@@ -18,15 +18,10 @@
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>LoginServlet</servlet-name>
-    <servlet-class>com.freshmarket.web.servlet.LoginServlet</servlet-class>
+    <servlet-name>UserServlet</servlet-name>
+    <servlet-class>com.freshmarket.web.servlet.UserServlet</servlet-class>
   </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>RegisterServlet</servlet-name>
-    <servlet-class>com.freshmarket.web.servlet.RegisterServlet</servlet-class>
-  </servlet>
+
    <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
@@ -36,38 +31,29 @@
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>AdminLoginServlet</servlet-name>
-    <servlet-class>com.freshmarket.web.servlet.AdminLoginServlet</servlet-class>
+    <servlet-name>AdminServlet</servlet-name>
+    <servlet-class>com.freshmarket.web.servlet.AdminServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>CommodityTypeServlet</servlet-name>
+    <servlet-class>com.freshmarket.web.servlet.CommodityTypeServlet</servlet-class>
   </servlet>
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>LoginOutServlet</servlet-name>
-    <servlet-class>com.freshmarket.web.servlet.LoginOutServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>GetAllCommodityTypeServlet</servlet-name>
-    <servlet-class>com.freshmarket.web.servlet.GetAllCommodityTypeServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>AddCommodityServlet</servlet-name>
-    <servlet-class>com.freshmarket.web.servlet.AddCommodityServlet</servlet-class>
+    <servlet-name>CommodityServlet</servlet-name>
+    <servlet-class>com.freshmarket.web.servlet.CommodityServlet</servlet-class>
   </servlet>
 
 
 
 
   <servlet-mapping>
-    <servlet-name>LoginServlet</servlet-name>
-    <url-pattern>/LoginServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>RegisterServlet</servlet-name>
-    <url-pattern>/RegisterServlet</url-pattern>
+    <servlet-name>UserServlet</servlet-name>
+    <url-pattern>/UserServlet</url-pattern>
   </servlet-mapping>	
   
    <servlet-mapping>
@@ -75,20 +61,18 @@
     <url-pattern>/VerifyCodeServlet</url-pattern>
   </servlet-mapping>	
   <servlet-mapping>
-    <servlet-name>AdminLoginServlet</servlet-name>
-    <url-pattern>/AdminLoginServlet</url-pattern>
+    <servlet-name>AdminServlet</servlet-name>
+    <url-pattern>/AdminServlet</url-pattern>
   </servlet-mapping>
+
   <servlet-mapping>
-    <servlet-name>LoginOutServlet</servlet-name>
-    <url-pattern>/LoginOutServlet</url-pattern>
+    <servlet-name>CommodityTypeServlet</servlet-name>
+    <url-pattern>/CommodityTypeServlet</url-pattern>
   </servlet-mapping>
+  
   <servlet-mapping>
-    <servlet-name>GetAllCommodityTypeServlet</servlet-name>
-    <url-pattern>/GetAllCommodityTypeServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>AddCommodityServlet</servlet-name>
-    <url-pattern>/AddCommodityServlet</url-pattern>
+    <servlet-name>CommodityServlet</servlet-name>
+    <url-pattern>/CommodityServlet</url-pattern>
   </servlet-mapping>
   
   <welcome-file-list>

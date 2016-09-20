@@ -55,7 +55,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
             
             <div class="navR fl">
-            <a href="LoginOutServlet">退出</a>
+            <a href="UserServlet?method=loginOut">退出</a>
             </div>
         </div>
     </div>

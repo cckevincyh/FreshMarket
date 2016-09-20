@@ -39,7 +39,7 @@
 			<h1>Login or Create a Free Account!</h1>
 		</div>
 		<p>Lorem iopsum dolor sit amit,consetetur sadipscing eliter,sed diam voluptua.At vero  eso et accusam et justo duo dolores et ea rebum. </p>
-			<form action='<c:url value="/LoginServlet"></c:url>' method="post">
+			<form action='<c:url value="/UserServlet?method=login"></c:url>' method="post">
 			  <ul class="right-form">
 			    <h2>登陆：</h2>
 					<div>

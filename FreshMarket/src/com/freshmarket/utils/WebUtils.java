@@ -76,7 +76,7 @@ public class WebUtils {
 						BeanUtils.setProperty(bean, fileItem.getFieldName(), fileItem.getString("UTF-8"));
 					}else{
 						//为文件表单
-						String root = request.getServletContext().getRealPath("/WEB-INF/files/");
+						String root = request.getServletContext().getRealPath("/commodity/imags/");
 						//截取字符串
 				        String filename = fileItem.getName();
 				    	int index = filename.lastIndexOf("\\");
@@ -89,14 +89,14 @@ public class WebUtils {
 						
 						//创建目录链
 						File dirFile = new File(root);
-						dirFile.mkdirs();
+						System.out.println(dirFile.mkdirs());
 						
 						//保存文件
 						File destFile = new File(dirFile,savename);
 						
 						//调用其API完成文件的保存
 						fileItem.write(destFile);
-						BeanUtils.setProperty(bean,"url", "/WEB-INF/files/"+savename);
+						BeanUtils.setProperty(bean,"url", request.getContextPath()+"/commodity/imags/"+savename);
 					}
 				}
 				return bean;

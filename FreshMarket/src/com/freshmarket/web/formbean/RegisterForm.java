@@ -3,7 +3,9 @@ package com.freshmarket.web.formbean;
 import java.util.HashMap;
 import java.util.Map;
 
-
+/**
+ * 提交的注册表单类
+ */
 public class RegisterForm {
 	private String username;
 	private String password;
