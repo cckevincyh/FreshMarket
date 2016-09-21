@@ -19,33 +19,33 @@
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>UserServlet</servlet-name>
-    <servlet-class>com.freshmarket.web.servlet.UserServlet</servlet-class>
+    <servlet-class>com.greengrocer.freshmarket.web.servlet.UserServlet</servlet-class>
   </servlet>
 
    <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>VerifyCodeServlet</servlet-name>
-    <servlet-class>com.freshmarket.web.servlet.VerifyCodeServlet</servlet-class>
+    <servlet-class>com.greengrocer.freshmarket.web.servlet.VerifyCodeServlet</servlet-class>
   </servlet>
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>AdminServlet</servlet-name>
-    <servlet-class>com.freshmarket.web.servlet.AdminServlet</servlet-class>
+    <servlet-class>com.greengrocer.freshmarket.web.servlet.AdminServlet</servlet-class>
   </servlet>
 
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>CommodityTypeServlet</servlet-name>
-    <servlet-class>com.freshmarket.web.servlet.CommodityTypeServlet</servlet-class>
+    <servlet-class>com.greengrocer.freshmarket.web.servlet.CommodityTypeServlet</servlet-class>
   </servlet>
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
     <servlet-name>CommodityServlet</servlet-name>
-    <servlet-class>com.freshmarket.web.servlet.CommodityServlet</servlet-class>
+    <servlet-class>com.greengrocer.freshmarket.web.servlet.CommodityServlet</servlet-class>
   </servlet>
 
 
@@ -99,7 +99,7 @@
   <filter>
     <display-name>EncodingFilter</display-name>
     <filter-name>EncodingFilter</filter-name>
-    <filter-class>com.freshmarket.web.filter.EncodingFilter</filter-class>
+    <filter-class>com.greengrocer.freshmarket.web.filter.EncodingFilter</filter-class>
   </filter>
   
   <filter-mapping>
@@ -113,7 +113,7 @@
     <filter>
     <display-name>AdminFilter</display-name>
     <filter-name>AdminFilter</filter-name>
-    <filter-class>com.freshmarket.web.filter.AdminFilter</filter-class>
+    <filter-class>com.greengrocer.freshmarket.web.filter.AdminFilter</filter-class>
   </filter>
   
   <filter-mapping>
@@ -127,7 +127,7 @@
     <filter>
     <display-name>UserFilter</display-name>
     <filter-name>UserFilter</filter-name>
-    <filter-class>com.freshmarket.web.filter.UserFilter</filter-class>
+    <filter-class>com.greengrocer.freshmarket.web.filter.UserFilter</filter-class>
   </filter>
   
   <filter-mapping>
