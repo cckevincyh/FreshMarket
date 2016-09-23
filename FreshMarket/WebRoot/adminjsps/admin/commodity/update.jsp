@@ -71,7 +71,7 @@
     	商品价格:<input type="text" name="commodityPrice" value="${commodity.commodityPrice }"><br>
     	商品数量:<input type="text" name="commodityAmount" value="${commodity.commodityAmount }"><br>
     	商品剩余数量：<input type="text" name="commodityLeaveNum" value="${commodity.commodityLeaveNum }"><br>
-    	商品图片:<input type="file" name="image"/><br/>
+    	商品图片:<input type="file" name="image" value="${commodity.url }"/><br/>
     	<input type="submit" value="修改" onclick="javascript:return _onClick()">
     
     </form>

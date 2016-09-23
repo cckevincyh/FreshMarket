@@ -118,7 +118,7 @@
   
   <filter-mapping>
     <filter-name>AdminFilter</filter-name>
-    <url-pattern>/admin/*</url-pattern>
+    <url-pattern>/adminjsps/*</url-pattern>
   </filter-mapping>
 <!-- 管理员权限的过滤 -->
  

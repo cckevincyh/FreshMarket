@@ -18,6 +18,15 @@
 	table {font-family: 宋体; font-size: 11pt; border-color: rgb(78,78,78);  }
 	#th {background: rgb(78,78,78);}
 </style>
+    <script type="text/javascript">
+		function deleteitem(id){
+		
+			var b = window.confirm("你确认删除吗??");
+			if(b){
+				window.location.href="${pageContext.request.contextPath}/CommodityTypeServlet?method=deleteCommodityType&commodityTypeID="+id;
+			}
+		}
+	</script>
   </head>
   
   <body>
@@ -33,8 +42,8 @@
     		<td >${commodityTypes.commodityTypeName }</td>
     		<td align="center"><img src="${commodityTypes.typeUrl}" width="100" height="90"/></td>
     		<td >
-    		  <a href="<c:url value='/adminjsps/admin/category/mod.jsp'/>">修改</a> |
-    		  <a href="<c:url value='/adminjsps/admin/category/del.jsp'/>">删除</a>
+    		  <a href="<c:url value='/CommodityTypeServlet?method=findCommodityType&commodityTypeID=${commodityTypes.commodityTypeID }'/>">修改</a> |
+    		  <a href="javascript:void(0)" onclick="deleteitem(${commodityTypes.commodityTypeID})">删除</a>
     		</td>
     	</tr>
     	</c:forEach>

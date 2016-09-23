@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.greengrocer.freshmarket.domain.Admin;
 import com.greengrocer.freshmarket.exception.UserException;
@@ -39,7 +40,7 @@ public class AdminServlet extends BaseServlet {
 			request.getSession().setAttribute("sessionUser", admin);
 			//重定向到首页
 			//response.sendRedirect(request.getContextPath() + "/index.jsp");
-			return "r:/index.jsp";
+			return "r:/adminjsps/admin/main.jsp";
 			
 		} catch (UserException e) {
 			//如果抛出异常：获取异常信息，保存到request域，再保存form，转发到adminLogin.jsp
@@ -52,6 +53,24 @@ public class AdminServlet extends BaseServlet {
 		}
 		
 		
+	}
+	
+	
+	/**
+	 * 用户注销
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public String loginOut(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		HttpSession session = request.getSession(false);
+		session.invalidate();
+		//注销成功重定向到转到首页
+		//response.sendRedirect(request.getContextPath()+"/adminLogin.jsp");
+		return "r:/adminLogin.jsp";
+
 	}
 
 }

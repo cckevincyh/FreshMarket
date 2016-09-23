@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.ResultSetHandler;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import com.greengrocer.freshmarket.dao.CommodityTypeDao;
@@ -39,6 +40,49 @@ public class CommodityTypeDaoImpl implements CommodityTypeDao{
 			String sql = "INSERT INTO CommodityType VALUES(?,?,?)";
 			Object[] params = {commodityType.getCommodityTypeID(),commodityType.getCommodityTypeName(),commodityType.getTypeUrl()};
 			qr.update(sql, params);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		
+	}
+
+	/**
+	 * 查询商品种类信息
+	 */
+	@Override
+	public CommodityType findCommodityType(String commodityTypeID) {
+		try {
+			String sql ="SELECT * FROM CommodityType WHERE CommodityTypeID = ?;";
+			return qr.query(sql, commodityTypeID, new BeanHandler<CommodityType>(CommodityType.class));
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		
+	}
+
+	
+	/**
+	 * 修改商品种类信息
+	 */
+	@Override
+	public void updateCommodityType(CommodityType commodityType) {
+		try {
+			String sql = "UPDATE CommodityType SET commodityTypeName=?, typeUrl=? WHERE commodityTypeID = ?;";
+			Object[] params = {commodityType.getCommodityTypeName(),commodityType.getTypeUrl(),commodityType.getCommodityTypeID()};
+			qr.update(sql, params);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	/**
+	 * 删除商品种类信息
+	 */
+	@Override
+	public void deleteCommodityType(String commodityTypeID) {
+		try {
+			String sql = "DELETE FROM CommodityType WHERE commodityTypeID = ?;";
+			qr.update(sql, commodityTypeID);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}

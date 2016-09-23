@@ -38,11 +38,42 @@ public class CommodityTypeService {
 	}
 
 
+	/**
+	 * 添加商品种类
+	 * @param commodityType
+	 */
 	public void addCommodityType(CommodityType commodityType) {
 		commodityTypDao.addCommodityType(commodityType);
 		
 	}
 
+
+	/**
+	 * 查询商品种类
+	 * @param commodityTypeID
+	 * @return 
+	 */
+	public CommodityType findCommodityType(String commodityTypeID) {
+		return commodityTypDao.findCommodityType(commodityTypeID);
+		
+	}
+
+
+	/**
+	 * 修改商品种类
+	 * @param commodityType
+	 */
+	public void updateCommodityType(CommodityType commodityType) {
+		commodityTypDao.updateCommodityType(commodityType);
+	}
+
+	/**
+	 * 删除商品种类
+	 * @param commodityTypeID
+	 */
+	public void deleteCommodityType(String commodityTypeID) {
+		commodityTypDao.deleteCommodityType(commodityTypeID);
+	}
 
 
 	

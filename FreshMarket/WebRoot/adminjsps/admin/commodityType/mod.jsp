@@ -15,16 +15,16 @@
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 <style type="text/css">
-	body {background: rgb(254,238,189);}
+
 </style>
   </head>
   
   <body>
     <h1>修改分类</h1>
-    <form action="javascript:alert('修改分类成功！');" method="post">
-    	<input type="hidden" name="cid" value="" />
-    	分类名称：<input type="text" name="cname" value="JavaSE分类"/><br><br>
-    	分类图片:<input type="file" name="filename"/><br><br>
+    <form action='<c:url value="/CommodityTypeServlet?method=updateCommodityType"></c:url>' method="post" enctype="multipart/form-data">
+    	<input type="hidden" name="commodityTypeID" value="${commodityType.commodityTypeID }" />
+    	分类名称：<input type="text" name="commodityTypeName" value="${commodityType.commodityTypeName }"/><br><br>
+    	分类图片:<input type="file" name="filename" value="${commodityType.typeUrl }"/><br><br>
     	<input type="submit" value="修改分类"/>
     </form>
   </body>

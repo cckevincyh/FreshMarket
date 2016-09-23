@@ -19,6 +19,6 @@
   
   <body style="background: rgb(78,78,78);color: white;">
 <h1 style="text-align: center; ">新鲜购网上超市后台管理</h1>
-<p style="font-size: 11pt;">管理员：xxxx</p>
+<p style="font-size: 11pt;">管理员：${sessionUser.username }  |  <a target=_parent href='<c:url value="/AdminServlet?method=loginOut"></c:url>'>退出</a></p>
   </body>
 </html>

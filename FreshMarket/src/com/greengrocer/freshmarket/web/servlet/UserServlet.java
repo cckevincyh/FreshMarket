@@ -141,20 +141,14 @@ public class UserServlet extends BaseServlet {
 	 * @throws ServletException
 	 * @throws IOException
 	 */
-	public void loginOut(HttpServletRequest request, HttpServletResponse response)
+	public String loginOut(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		if(session!=null){
-			session.removeAttribute("sessionUser");
-		}
+		session.invalidate();
 		//注销成功重定向到转到首页
-		response.sendRedirect(request.getContextPath()+"/index.jsp");
-
+		//response.sendRedirect(request.getContextPath()+"/index.jsp");
+		return "r:/index.jsp";
 	}
 
-	public void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		doGet(request, response);
-	}
 
 }
