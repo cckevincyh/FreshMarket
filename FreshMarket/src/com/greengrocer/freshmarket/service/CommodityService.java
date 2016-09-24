@@ -5,6 +5,7 @@ import java.util.List;
 import com.greengrocer.freshmarket.dao.CommodityDao;
 import com.greengrocer.freshmarket.dao.factory.DaoFactory;
 import com.greengrocer.freshmarket.domain.Commodity;
+import com.greengrocer.freshmarket.domain.PageBean;
 import com.greengrocer.freshmarket.web.formbean.CommodityForm;
 
 public class CommodityService {
@@ -23,8 +24,8 @@ public class CommodityService {
 	 * 找到所有商品信息实体
 	 * @return 所有商品信息实体集合
 	 */
-	public List<Commodity> findAllCommodity(){
-		return commodityDao.findAllCommodity();
+	public PageBean<Commodity> findAllCommodity(int pageCode,int pageSize){
+		return commodityDao.findAllCommodity(pageCode,pageSize);
 	}
 	
 	/**

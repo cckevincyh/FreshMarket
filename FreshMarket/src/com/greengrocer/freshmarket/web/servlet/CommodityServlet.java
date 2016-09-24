@@ -1,23 +1,17 @@
 package com.greengrocer.freshmarket.web.servlet;
 
-import java.io.File;
+
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileUploadException;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
-import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import com.greengrocer.freshmarket.domain.Commodity;
-import com.greengrocer.freshmarket.domain.CommodityType;
+import com.greengrocer.freshmarket.domain.PageBean;
 import com.greengrocer.freshmarket.service.CommodityService;
-import com.greengrocer.freshmarket.utils.ServiceUtils;
+
 import com.greengrocer.freshmarket.utils.WebUtils;
 import com.greengrocer.freshmarket.web.formbean.CommodityForm;
 
@@ -44,7 +38,7 @@ public class CommodityServlet extends BaseServlet {
 	}
 	
 	/**
-	 * 查询所有商品信息实体
+	 * 查询所有商品信息实体（分页查询）
 	 * @param request
 	 * @param response
 	 * @return 
@@ -53,16 +47,56 @@ public class CommodityServlet extends BaseServlet {
 	 */
 	public String findAllCommodity(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		//获得url
+		String url = getUrl(request);
+		//获取页面传递过来的当前页码数
+		int pageCode = getPageCode(request);
+		//给pageSize,每页的记录数赋值
+		int pageSize = 10;
 		//得到商品信息实体集合
-		List<Commodity> commodities = service.findAllCommodity();
+		PageBean<Commodity> pb = service.findAllCommodity(pageCode,pageSize);
+		//设置url
+		pb.setUrl(url);
 		//存入request域中
-		request.setAttribute("commodities", commodities);
+		request.setAttribute("pb", pb);
 		//跳转到显示商品信息页面
 		return "/adminjsps/admin/commodity/list.jsp";
 		
 	}
 	
-	
+	/**
+	 * 获取url信息
+	 * @param request
+	 * @return
+	 */
+	private String getUrl(HttpServletRequest request) {
+		String url = request.getQueryString();
+		 //url中有可能导游pageCode，需要把它截取掉
+		int index = url.lastIndexOf("&pageCode=");
+		if(index == -1) {
+			return url;
+		}
+		return url.substring(0, index);
+	}
+
+	/**
+	 * 获取当前页码数
+	 * @param request
+	 * @return
+	 */
+	private int getPageCode(HttpServletRequest request) {
+		/*
+		 * 1. 得到PageCode
+		 *   如果PageCode参数不存在，说明PageCode=1
+		 *   如果PageCode参数存在，需要转换成int类型即可
+		 */
+		String value = request.getParameter("pageCode");
+		if(value == null || value.trim().isEmpty()) {
+			return 1;
+		}
+		return Integer.parseInt(value);
+	}
+
 	/**
 	 * 根据商品编号删除该商品信息实体
 	 * @param request

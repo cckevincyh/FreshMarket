@@ -3,6 +3,7 @@ package com.greengrocer.freshmarket.dao;
 import java.util.List;
 
 import com.greengrocer.freshmarket.domain.Commodity;
+import com.greengrocer.freshmarket.domain.PageBean;
 import com.greengrocer.freshmarket.web.formbean.CommodityForm;
 
 public interface CommodityDao {
@@ -12,11 +13,14 @@ public interface CommodityDao {
 	 * @param commodity 商品实体
 	 */
 	public void addCommodity(CommodityForm commodityForm);
+	
 	/**
-	 * 查询所有的商品信息
-	 * @return 商品信息实体集合
+	 * 查询所有的商品信息，用于分页查询
+	 * @param pageCode 当前页码
+	 * @param pageSize 页面的记录数
+	 * @return
 	 */
-	public List<Commodity> findAllCommodity();
+	public PageBean<Commodity> findAllCommodity(int pageCode,int pageSize);
 	
 	/**
 	 * 根据商品编号删除商品信息
