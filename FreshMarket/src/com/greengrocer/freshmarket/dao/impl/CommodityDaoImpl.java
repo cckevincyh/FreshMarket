@@ -6,10 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.dbutils.QueryRunner;
-import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.MapHandler;
+import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import com.greengrocer.freshmarket.dao.CommodityDao;
@@ -18,6 +20,7 @@ import com.greengrocer.freshmarket.dao.TxQueryRunner;
 import com.greengrocer.freshmarket.domain.Commodity;
 import com.greengrocer.freshmarket.domain.CommodityType;
 import com.greengrocer.freshmarket.domain.PageBean;
+import com.greengrocer.freshmarket.utils.ServiceUtils;
 import com.greengrocer.freshmarket.web.formbean.CommodityForm;
 
 public class CommodityDaoImpl implements CommodityDao{
@@ -45,82 +48,36 @@ public class CommodityDaoImpl implements CommodityDao{
 	 * 查询所有的商品信息 (返回的是分页后的商品信息集合)
 	 */
 	@Override
-	public PageBean<Commodity> findAllCommodity(int pageCode,int pageSize) {
-		Connection  connection = null;
-		PreparedStatement ps= null;
-		ResultSet rs = null;
-		
+	public PageBean<Commodity> findAllCommodity(int pageCode,int pageSize) {	
 		PageBean<Commodity> pb = new PageBean<Commodity>();	//pageBean对象，用于分页
 		//根据传入的pageCode当前页码和pageSize页面记录数来设置pb对象
 		pb.setPageCode(pageCode);//设置当前页码
 		pb.setPageSize(pageSize);//设置页面记录数
 		
-		
 		try {
 			String sql = "SELECT count(*) FROM Commodity";
-			Number num;
+			Number num;	//记录查询的总记录结果
 			num = (Number)qr.query(sql, new ScalarHandler());
 			int totalRecord = num.intValue(); //得到总记录数
 			pb.setTotalRecord(totalRecord);	//设置总记录数
-		} catch (SQLException e1) {
-			throw new RuntimeException(e1);
-		}
-		
-		List<Commodity> commodities = new ArrayList<Commodity>();
-		try {
-			connection = JdbcUtils.getConnection();
-			 ps = connection.prepareStatement("SELECT commodity.`commodityTypeID`,`commodityTypeName`," +
-					"`commodityName`,`commodityPrice`, `commodityAmount`," +
-					"`commodityLeaveNum`,`url`,`commodityID` FROM commodityType ,commodity" +
-					" where commodityType.commodityTypeID = commodity.commodityTypeID " +
-					"order by commodity.`commodityTypeID` limit ?,?;");
-			 ps.setInt(1, (pageCode-1)*pageSize);
-			 ps.setInt(2, pageSize);
-			rs = ps.executeQuery();
-			while(rs.next()){
-				Commodity commodity = new Commodity();
-				CommodityType type = new CommodityType();
-				type.setCommodityTypeID(rs.getInt(1));
-				type.setCommodityTypeName(rs.getString(2));
-				commodity.setCommodityType(type);
-				commodity.setCommodityName(rs.getString(3));
-				commodity.setCommodityPrice(rs.getDouble(4));
-				commodity.setCommodityAmount(rs.getInt(5));
-				commodity.setCommodityLeaveNum(rs.getInt(6));
-				commodity.setUrl(rs.getString(7));
-				commodity.setCommodityID(rs.getInt(8));
-				commodities.add(commodity);
-				//设置当前页记录数(商品信息集合)
-				pb.setBeanList(commodities);	
-			}
+			
+			sql = "SELECT * FROM Commodity limit ?,?; ";
+			Object[] params = {(pageCode-1)*pageSize,pageSize};
+			//得到分页后的商品信息集合
+			List<Commodity> commodities = qr.query(sql, params, new BeanListHandler<Commodity>(Commodity.class));		
+			//设置分页后的商品信息集合
+			pb.setBeanList(commodities);
+			
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
-		}finally{
-			if(connection!=null ){
-				try {
-					JdbcUtils.releaseConnection(connection);
-				} catch (SQLException e) {
-					throw new RuntimeException(e);
-				}
-			}
-			if(ps!=null){
-				try {
-					ps.close();
-				} catch (SQLException e) {
-					throw new RuntimeException(e);
-				}
-			}
-			if(rs!=null){
-				try {
-					rs.close();
-				} catch (SQLException e) {
-					throw new RuntimeException(e);
-				}
-			}
 		}
-		
 		return pb;
 	}
+
+	
+	
+	
+
 
 	/**
 	 * 删除商品信息
@@ -143,57 +100,45 @@ public class CommodityDaoImpl implements CommodityDao{
 	 * @param commodityID
 	 */
 	public Commodity findCommodity(String commodityID){
-		Connection  connection = null;
-		PreparedStatement ps= null;
-		ResultSet rs = null;
-		Commodity commodity = new Commodity();
 		try {
-			connection = JdbcUtils.getConnection();
-			 ps = connection.prepareStatement("SELECT commodity.`commodityTypeID`,`commodityTypeName`," +
-					"`commodityName`,`commodityPrice`, `commodityAmount`," +
-					"`commodityLeaveNum`,`url`,`commodityID` FROM commodityType ,commodity" +
-					" where commodityType.commodityTypeID = commodity.commodityTypeID and commodityID=?;");
-			 ps.setInt(1, Integer.parseInt(commodityID));
-			rs = ps.executeQuery();
-			if(rs.next()){
-				CommodityType type = new CommodityType();
-				type.setCommodityTypeID(rs.getInt(1));
-				type.setCommodityTypeName(rs.getString(2));
-				commodity.setCommodityType(type);
-				commodity.setCommodityName(rs.getString(3));
-				commodity.setCommodityPrice(rs.getDouble(4));
-				commodity.setCommodityAmount(rs.getInt(5));
-				commodity.setCommodityLeaveNum(rs.getInt(6));
-				commodity.setUrl(rs.getString(7));
-				commodity.setCommodityID(rs.getInt(8));
-			}
+			String sql = "SELECT * FROM  commodityType ,commodity WHERE " +
+					"commodityType.commodityTypeID = commodity.commodityTypeID AND CommodityID = ?";
+			//查询出List的map集合
+			Map<String, Object> map = qr.query(sql, commodityID,new MapHandler());
+			//得到Commodity对象
+			Commodity commodity = toCommodity(map);
+			
+			sql = "SELECT commodityTypeName FROM CommodityType WHERE commodityTypeID = ?";
+			//得到该商品id的商品名称
+			String commodityTypeName = (String) qr.query(sql, commodityID, new ScalarHandler());
+			//设置商品名字
+			commodity.getCommodityType().setCommodityTypeName(commodityTypeName);
+			return commodity;
+			
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
-		}finally{
-			if(connection!=null ){
-				try {
-					JdbcUtils.releaseConnection(connection);
-				} catch (SQLException e) {
-					throw new RuntimeException(e);
-				}
-			}
-			if(ps!=null){
-				try {
-					ps.close();
-				} catch (SQLException e) {
-					throw new RuntimeException(e);
-				}
-			}
-			if(rs!=null){
-				try {
-					rs.close();
-				} catch (SQLException e) {
-					throw new RuntimeException(e);
-				}
-			}
 		}
+		
+	}
+	
+
+	/**
+	 * 把一个Map转换成一个Commodity对象和CommdityType对象，并建立关系
+	 * @param map
+	 * @return
+	 */
+	private Commodity toCommodity(Map<String, Object> map) {
+		//通过工具类把map集合转换为
+		Commodity commodity = ServiceUtils.toBean(map, Commodity.class);
+		CommodityType commodityType = ServiceUtils.toBean(map, CommodityType.class);
+		//给商品设置商品种类
+		commodity.setCommodityType(commodityType);
 		return commodity;
 	}
+	
+	
+	
+	
 
 	/**
 	 * 修改商品信息
@@ -212,6 +157,64 @@ public class CommodityDaoImpl implements CommodityDao{
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+
+	/**
+	 * 多条件查询商品信息(分页查询)
+	 */
+	@Override
+	public PageBean<Commodity> queryCommodity(int pageCode, int pageSize,
+			CommodityForm commodityForm) {
+		PageBean<Commodity> pb = new PageBean<Commodity>();	//pageBean对象，用于分页
+		//根据传入的pageCode当前页码和pageSize页面记录数来设置pb对象
+		pb.setPageCode(pageCode);//设置当前页码
+		pb.setPageSize(pageSize);//设置页面记录数
+		
+		try {
+			
+			StringBuilder sql = new StringBuilder("SELECT count(*) FROM Commodity WHERE 1=1 ");
+			
+			
+			//进行多条件查询
+			//得到分页后的商品信息集合
+			List<Commodity> commodities = null;
+			
+			StringBuilder _sql = new StringBuilder("SELECT * FROM Commodity WHERE 1=1 ");
+			//Object[] params = {(pageCode-1)*pageSize,pageSize};
+			ArrayList<Object> params = new ArrayList<Object>();
+			
+			if(commodityForm.getCommodityName()!=null && !commodityForm.getCommodityName().trim().equals("")){
+				_sql.append("AND CommodityName like '%"+commodityForm.getCommodityName()+"%' ");
+				sql.append("AND CommodityName like '%"+commodityForm.getCommodityName()+"%' ");
+			}
+			if(commodityForm.getCommodityTypeID()!=-1){
+				_sql.append("AND commodity.`commodityTypeID`=? ");
+				sql.append("AND commodity.`commodityTypeID`=? ");
+				params.add(commodityForm.getCommodityTypeID());
+			
+			}
+			_sql.append("limit ?,?");
+			
+			Number num;	//记录查询的总记录结果
+			num = (Number)qr.query(sql.toString(),params.toArray(), new ScalarHandler());
+			int totalRecord = num.intValue(); //得到总记录数
+			pb.setTotalRecord(totalRecord);	//设置总记录数
+			
+			params.add((pageCode-1)*pageSize);
+			params.add(pageSize);
+			commodities = qr.query(_sql.toString(), params.toArray(), new BeanListHandler<Commodity>(Commodity.class));	
+			
+			
+			
+			//设置分页后的商品信息集合
+			pb.setBeanList(commodities);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return pb;
 	}
 
 }

@@ -41,4 +41,17 @@ public interface CommodityDao {
 	 * @param commodityID
 	 */
 	public void updateCommodity(CommodityForm commodityForm);
+	
+	
+	/**
+	 * 多条件查询商品信息（分页查询）
+	 * @param pageCode
+	 * @param pageSize
+	 * @param commodityForm
+	 * @return
+	 */
+	public PageBean<Commodity> queryCommodity(int pageCode, int pageSize,CommodityForm commodityForm);
+	 
+	 
+	 
 }

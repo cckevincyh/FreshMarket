@@ -30,7 +30,7 @@ function load() {
 
 	bar1.add("商品管理", "查看商品", "<c:url value='/CommodityServlet?method=findAllCommodity'/>", "body");
 	bar1.add("商品管理", "添加商品", "<c:url value='/adminjsps/admin/commodity/add.jsp'/>", "body");
-	bar1.add("商品管理", "查询商品", "<c:url value='/adminjsps/admin/book/add.jsp'/>", "body");
+	bar1.add("商品管理", "查询商品", "<c:url value='/adminjsps/admin/commodity/query.jsp'/>", "body");
 
 	bar1.add("订单管理", "所有订单", "<c:url value='/adminjsps/admin/order/list.jsp'/>", "body");
 	bar1.add("订单管理", "未付款订单", "<c:url value='/adminjsps/admin/order/list.jsp'/>", "body");

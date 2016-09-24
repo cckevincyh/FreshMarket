@@ -51,5 +51,18 @@ public class CommodityService {
 	public Commodity findCommodity(String commodityID){
 		return commodityDao.findCommodity(commodityID);
 	}
+
+
+	/**
+	 *多条件查询商品信息
+	 * @param pageCode
+	 * @param pageSize
+	 * @param commodityForm
+	 * @return
+	 */
+	public PageBean<Commodity> queryCommodity(int pageCode, int pageSize,
+			CommodityForm commodityForm) {
+		return commodityDao.queryCommodity(pageCode, pageSize, commodityForm);
+	}
 	
 }

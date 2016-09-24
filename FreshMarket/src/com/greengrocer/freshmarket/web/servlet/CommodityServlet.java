@@ -131,7 +131,7 @@ public class CommodityServlet extends BaseServlet {
 		//查询该商品信息
 		Commodity commodity = service.findCommodity(commodityID);
 		request.setAttribute("commodity", commodity);
-		//重定向到展示的列表（先查询所有的商品信息再重定向）
+		//转发到展示的列表
 		return "/adminjsps/admin/commodity/showCommodity.jsp";
 	}
 	
@@ -154,7 +154,7 @@ public class CommodityServlet extends BaseServlet {
 		//查询该商品信息
 		Commodity commodity = service.findCommodity(commodityID);
 		request.setAttribute("commodity", commodity);
-		//重定向到修改的列表（先查询所有的商品信息再重定向）
+		//转发向到修改的列表
 		return "/adminjsps/admin/commodity/update.jsp";
 	}
 	
@@ -179,6 +179,35 @@ public class CommodityServlet extends BaseServlet {
 		return "r:/CommodityServlet?method=findAllCommodity";
 	}
 	
+	
+	
+	/**
+	 * 多条件查询商品信息
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public String queryCommodity(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		//获得url
+		String url = getUrl(request);
+		//获取页面传递过来的当前页码数
+		int pageCode = getPageCode(request);
+		//给pageSize,每页的记录数赋值
+		int pageSize = 10;
+		//把提交的表单封装成一个bean对象
+		CommodityForm commodityForm = WebUtils.request2Bean(request, CommodityForm.class);
+		//得到商品信息实体集合
+		PageBean<Commodity> pb = service.queryCommodity(pageCode,pageSize,commodityForm);
+		//设置url
+		pb.setUrl(url);
+		//存入request域中
+		request.setAttribute("pb", pb);
+		//转发到修改的列表
+		return "/adminjsps/admin/commodity/list.jsp";
+	}
 	
 	
 

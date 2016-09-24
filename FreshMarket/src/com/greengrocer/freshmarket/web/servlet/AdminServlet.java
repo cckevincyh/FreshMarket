@@ -66,7 +66,9 @@ public class AdminServlet extends BaseServlet {
 	public String loginOut(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		session.invalidate();
+		if(session!=null){
+			session.invalidate();
+		}
 		//注销成功重定向到转到首页
 		//response.sendRedirect(request.getContextPath()+"/adminLogin.jsp");
 		return "r:/adminLogin.jsp";
