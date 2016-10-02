@@ -18,7 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 			var b = window.confirm("你确认删除吗??");
 			if(b){
-				window.location.href="${pageContext.request.contextPath}/CommodityServlet?method=deleteCommodity&commodityID="+id;
+				window.location.href="${pageContext.request.contextPath}/AdminCommodityServlet?method=deleteCommodity&commodityID="+id;
 			}
 		}
 	</script>
@@ -45,7 +45,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    			<td>
 		    			<a href="javascript:void(0)" onclick="deleteitem(${commodity.commodityID})">删除</a>  |
 		    			     
-		    			<a href="${pageContext.request.contextPath}/CommodityServlet?method=update&commodityID=${commodity.commodityID}">修改</a>
+		    			<a href="${pageContext.request.contextPath}/AdminCommodityServlet?method=update&commodityID=${commodity.commodityID}">修改</a>
 	    			</td>
     			</tr>
     		

@@ -32,7 +32,7 @@
 <script type="text/javascript">
 	function _change() {
 		var select = document.getElementById("select");
-		location = "<c:url value='/CommodityServlet?${pb.url }'/>&pageCode=" + select.value;
+		location = "<c:url value='/AdminCommodityServlet?${pb.url }'/>&pageCode=" + select.value;
 	}
 </script>
 
@@ -42,9 +42,9 @@
   <body>
   <c:forEach var="commodity" items="${pb.beanList }">
    <div class="icon">
-    <a href="<c:url value='/CommodityServlet?method=findCommodity&commodityID=${commodity.commodityID }'/>"><img src="${commodity.url}"  width="160" height="170" border="0"/></a>
+    <a href="<c:url value='/AdminCommodityServlet?method=findCommodity&commodityID=${commodity.commodityID }'/>"><img src="${commodity.url}"  width="160" height="170" border="0"/></a>
       <br/>
-   	<a href="<c:url value='/CommodityServlet?method=findCommodity&commodityID=${commodity.commodityID }'/>">${commodity.commodityName}</a>
+   	<a href="<c:url value='/AdminCommodityServlet?method=findCommodity&commodityID=${commodity.commodityID }'/>">${commodity.commodityName}</a>
   </div>
   </c:forEach>
   
@@ -53,9 +53,9 @@
     <p style="text-align: center;">
   <div style="position:fixed;bottom: 30;text-align: center;margin-left: auto;margin-right: auto; width: 100%">
   	第${pb.pageCode }页/共${pb.totaPage }页
-  	<a href=' <c:url value="/CommodityServlet?${pb.url }&pageCode=1 "></c:url>'>首页</a>
+  	<a href=' <c:url value="/AdminCommodityServlet?${pb.url }&pageCode=1 "></c:url>'>首页</a>
   <c:if test="${pb.pageCode>1 }">
-  	<a href=' <c:url value="/CommodityServlet?${pb.url }&pageCode=${pb.pageCode-1 } "></c:url>'>上一页</a>
+  	<a href=' <c:url value="/AdminCommodityServlet?${pb.url }&pageCode=${pb.pageCode-1 } "></c:url>'>上一页</a>
   </c:if>
   
    <%-- 定义页码列表的长度，10个长 --%>
@@ -92,7 +92,7 @@
   <%--如果是当前页则设置无法点击超链接 --%>
   	<c:when test="${i eq pb.pageCode }">${i }</c:when>
   	<c:otherwise>
-  		<a href="<c:url value='/CommodityServlet?${pb.url }&pageCode=${i}'/>">[${i }]</a>
+  		<a href="<c:url value='/AdminCommodityServlet?${pb.url }&pageCode=${i}'/>">[${i }]</a>
   	</c:otherwise>
   </c:choose>
 </c:forEach>
@@ -100,10 +100,10 @@
   
   <%--如果当前页数没到总页数，即没到最后一页,则需要显示下一页 --%>
   <c:if test="${pb.pageCode < pb.totaPage }">　
-	<a href="<c:url value='/CommodityServlet?${pb.url }&pageCode=${pb.pageCode+1 }'/>">下一页</a>
+	<a href="<c:url value='/AdminCommodityServlet?${pb.url }&pageCode=${pb.pageCode+1 }'/>">下一页</a>
 </c:if>
 　<%--否则显示尾页 --%>
-	<a href="<c:url value='/CommodityServlet?${pb.url }&pageCode=${pb.totaPage }'/>">尾页</a>　
+	<a href="<c:url value='/AdminCommodityServlet?${pb.url }&pageCode=${pb.totaPage }'/>">尾页</a>　
 
 	<%--可选择的页码数 --%>
 	<select name="pc" onchange="_change()" id="select">

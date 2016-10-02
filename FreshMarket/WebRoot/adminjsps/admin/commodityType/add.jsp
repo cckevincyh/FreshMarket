@@ -21,9 +21,8 @@
   
   <body>
     <h1>添加分类</h1>
-    <form action="<c:url value='/CommodityTypeServlet?method=addCommodityType'/>" method="post" enctype="multipart/form-data">
+    <form action="<c:url value='/AdminCommodityTypeServlet?method=addCommodityType'/>" method="post">
     	分类名称:<input type="text" name="commodityTypeName"><br>
-    	分类图片:<input type="file" name="image"/><br/>
     	<input type="submit" value="添加">
     
     </form>

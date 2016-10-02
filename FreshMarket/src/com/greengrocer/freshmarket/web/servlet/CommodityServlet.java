@@ -19,23 +19,7 @@ public class CommodityServlet extends BaseServlet {
 
 	private CommodityService service = new CommodityService();
 	
-	/**
-	 * 添加商品信息实体
-	 * @param request
-	 * @param response
-	 * @throws ServletException
-	 * @throws IOException
-	 */
-	public String addCommodity(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		//调用工具类，把上传的表单封装成一个bean对象
-		CommodityForm commodityForm = WebUtils.uploadForm2Bean(request, CommodityForm.class,"commodity","url");
-		//添加商品信息实体
-		service.addCommodity(commodityForm);
-		//重定向到展示的列表（先查询所有的商品信息再重定向）
-		return "r:/CommodityServlet?method=findAllCommodity";
-		
-	}
+
 	
 	/**
 	 * 查询所有商品信息实体（分页查询）
@@ -97,24 +81,7 @@ public class CommodityServlet extends BaseServlet {
 		return Integer.parseInt(value);
 	}
 
-	/**
-	 * 根据商品编号删除该商品信息实体
-	 * @param request
-	 * @param response
-	 * @return
-	 * @throws ServletException
-	 * @throws IOException
-	 */
-	public String deleteCommodity(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		//得到删除的商品编号
-		String commodityID = request.getParameter("commodityID");
-		//进行删除操作
-		service.deleteCommodity(commodityID);
-		//重定向到展示的列表（先查询所有的商品信息再重定向）
-		return "r:/CommodityServlet?method=findAllCommodity";
-	}
-	
+
 	
 	
 	/**
@@ -137,47 +104,6 @@ public class CommodityServlet extends BaseServlet {
 	
 	
 	
-	
-	
-	/**
-	 * 根据商品编号查询该商品信息返回给修改页面
-	 * @param request
-	 * @param response
-	 * @return
-	 * @throws ServletException
-	 * @throws IOException
-	 */
-	public String update(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		//得到修改的商品编号
-		String commodityID = request.getParameter("commodityID");
-		//查询该商品信息
-		Commodity commodity = service.findCommodity(commodityID);
-		request.setAttribute("commodity", commodity);
-		//转发向到修改的列表
-		return "/adminjsps/admin/commodity/update.jsp";
-	}
-	
-	
-	
-	/**
-	 * 修改商品信息
-	 * @param request
-	 * @param response
-	 * @return
-	 * @throws ServletException
-	 * @throws IOException
-	 */
-	public String updateCommodity(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-		//调用工具类，把上传的表单封装成一个bean对象
-		CommodityForm commodityForm = WebUtils.uploadForm2Bean(request, CommodityForm.class,"commodity","url");
-		//修改商品信息实体
-		service.updateCommodity(commodityForm);
-		//重定向到展示的列表（先查询所有的商品信息再重定向）
-		return "r:/CommodityServlet?method=findAllCommodity";
-	}
 	
 	
 	

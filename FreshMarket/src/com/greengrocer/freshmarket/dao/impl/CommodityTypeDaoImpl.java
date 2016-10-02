@@ -37,8 +37,8 @@ public class CommodityTypeDaoImpl implements CommodityTypeDao{
 	@Override
 	public void addCommodityType(CommodityType commodityType) {
 		try {
-			String sql = "INSERT INTO CommodityType VALUES(?,?,?)";
-			Object[] params = {commodityType.getCommodityTypeID(),commodityType.getCommodityTypeName(),commodityType.getTypeUrl()};
+			String sql = "INSERT INTO CommodityType VALUES(?,?)";
+			Object[] params = {commodityType.getCommodityTypeID(),commodityType.getCommodityTypeName()};
 			qr.update(sql, params);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -67,8 +67,8 @@ public class CommodityTypeDaoImpl implements CommodityTypeDao{
 	@Override
 	public void updateCommodityType(CommodityType commodityType) {
 		try {
-			String sql = "UPDATE CommodityType SET commodityTypeName=?, typeUrl=? WHERE commodityTypeID = ?;";
-			Object[] params = {commodityType.getCommodityTypeName(),commodityType.getTypeUrl(),commodityType.getCommodityTypeID()};
+			String sql = "UPDATE CommodityType SET commodityTypeName=? WHERE commodityTypeID = ?;";
+			Object[] params = {commodityType.getCommodityTypeName(),commodityType.getCommodityTypeID()};
 			qr.update(sql, params);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

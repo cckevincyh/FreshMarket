@@ -25,10 +25,10 @@ function load() {
 	bar1.add("管理员管理", "修改信息", "<c:url value='/adminjsps/admin/category/list.jsp'/>", "body");
 
 
-	bar1.add("分类管理", "查看分类", "<c:url value='/CommodityTypeServlet?method=getAllCommodityTypes'/>", "body");
+	bar1.add("分类管理", "查看分类", "<c:url value='/AdminCommodityTypeServlet?method=getAllCommodityTypes'/>", "body");
 	bar1.add("分类管理", "添加分类", "<c:url value='/adminjsps/admin/commodityType/add.jsp'/>", "body");
 
-	bar1.add("商品管理", "查看商品", "<c:url value='/CommodityServlet?method=findAllCommodity'/>", "body");
+	bar1.add("商品管理", "查看商品", "<c:url value='/AdminCommodityServlet?method=findAllCommodity'/>", "body");
 	bar1.add("商品管理", "添加商品", "<c:url value='/adminjsps/admin/commodity/add.jsp'/>", "body");
 	bar1.add("商品管理", "查询商品", "<c:url value='/adminjsps/admin/commodity/query.jsp'/>", "body");
 

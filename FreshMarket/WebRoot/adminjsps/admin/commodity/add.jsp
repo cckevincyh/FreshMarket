@@ -23,7 +23,7 @@
     window.onload = new function(){
     	ajax(
     		  {
-	    		url:"<c:url value='/CommodityTypeServlet?method=getAllCommodityType'/>",
+	    		url:"<c:url value='/AdminCommodityTypeServlet?method=getAllCommodityType'/>",
 	    		callback:function(data) {
 						var arr = data.split(",");
 						// 循环遍历每个商品(种类编号:商品种类名称)，每个名称生成一个option对象，添加到<select>中
@@ -57,7 +57,7 @@
   
   <body>
     <h2>商品信息添加</h2>
-    <form action="<c:url value='/CommodityServlet?method=addCommodity'/>" method="post" enctype="multipart/form-data">
+    <form action="<c:url value='/AdminCommodityServlet?method=addCommodity'/>" method="post" enctype="multipart/form-data">
     	商品名称:<input type="text" name="commodityName"><br>
     	商品类型:<select name="commodityTypeID" id="type">
     				<option >===请选择类型===</option>

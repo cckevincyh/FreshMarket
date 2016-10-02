@@ -62,7 +62,7 @@ public class WebUtils {
 	 * @param img 属性的img图片属性名字
 	 * 	@return bean对象
 	 */
-	public static <T> T uploadForm2Bean(HttpServletRequest request,Class<T> breanClass,String path,String img){
+	public static <T> T uploadForm2Bean(HttpServletRequest request,Class<T> breanClass){
 			//得到工厂
 			DiskFileItemFactory factory = new DiskFileItemFactory();
 			//通过工厂创建解析器
@@ -78,7 +78,7 @@ public class WebUtils {
 						BeanUtils.setProperty(bean, fileItem.getFieldName(), fileItem.getString("UTF-8"));
 					}else{
 						//为文件表单
-						String root = request.getServletContext().getRealPath("/"+path+"/imags/");
+						String root = request.getServletContext().getRealPath("/commodity/imags/");
 						//截取字符串
 				        String filename = fileItem.getName();
 				    	int index = filename.lastIndexOf("\\");
@@ -98,7 +98,7 @@ public class WebUtils {
 						
 						//调用其API完成文件的保存
 						fileItem.write(destFile);
-						BeanUtils.setProperty(bean,img, request.getContextPath()+"/"+path+"/imags/"+savename);
+						BeanUtils.setProperty(bean,"url", request.getContextPath()+"/commodity/imags/"+savename);
 					}
 				}
 				return bean;

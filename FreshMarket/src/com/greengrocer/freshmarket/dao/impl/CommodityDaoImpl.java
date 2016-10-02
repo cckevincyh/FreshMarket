@@ -108,11 +108,6 @@ public class CommodityDaoImpl implements CommodityDao{
 			//得到Commodity对象
 			Commodity commodity = toCommodity(map);
 			
-			sql = "SELECT commodityTypeName FROM CommodityType WHERE commodityTypeID = ?";
-			//得到该商品id的商品名称
-			String commodityTypeName = (String) qr.query(sql, commodityID, new ScalarHandler());
-			//设置商品名字
-			commodity.getCommodityType().setCommodityTypeName(commodityTypeName);
 			return commodity;
 			
 		} catch (SQLException e) {

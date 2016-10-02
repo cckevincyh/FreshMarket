@@ -23,7 +23,7 @@
 		
 			var b = window.confirm("你确认删除吗??");
 			if(b){
-				window.location.href="${pageContext.request.contextPath}/CommodityTypeServlet?method=deleteCommodityType&commodityTypeID="+id;
+				window.location.href="${pageContext.request.contextPath}/AdminCommodityTypeServlet?method=deleteCommodityType&commodityTypeID="+id;
 			}
 		}
 	</script>
@@ -34,15 +34,13 @@
     <table align="center" border="1" cellpadding="0" cellspacing="0" width="60%">
     	<tr id="th" bordercolor="rgb(78,78,78)">
     		<th>分类名称</th>
-    		<th > 分类图片</th>
     		<th>操作</th>
     	</tr>
       <c:forEach var="commodityTypes" items="${commodityTypes }">
     	<tr bordercolor="rgb(78,78,78)">
     		<td >${commodityTypes.commodityTypeName }</td>
-    		<td align="center"><img src="${commodityTypes.typeUrl}" width="100" height="90"/></td>
     		<td >
-    		  <a href="<c:url value='/CommodityTypeServlet?method=findCommodityType&commodityTypeID=${commodityTypes.commodityTypeID }'/>">修改</a> |
+    		  <a href="<c:url value='/AdminCommodityTypeServlet?method=findCommodityType&commodityTypeID=${commodityTypes.commodityTypeID }'/>">修改</a> |
     		  <a href="javascript:void(0)" onclick="deleteitem(${commodityTypes.commodityTypeID})">删除</a>
     		</td>
     	</tr>

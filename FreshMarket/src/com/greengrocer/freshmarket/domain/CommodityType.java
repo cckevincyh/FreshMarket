@@ -5,24 +5,11 @@ package com.greengrocer.freshmarket.domain;
  */
 public class CommodityType {
 	
-	@Override
-	public String toString() {
-		return "CommodityType [commodityTypeID=" + commodityTypeID
-				+ ", commodityTypeName=" + commodityTypeName + ", typeUrl="
-				+ typeUrl + "]";
-	}
 	private int commodityTypeID;		//商品种类编号
 	private String commodityTypeName;		//商品种类名称
-	private String typeUrl;	//商品种类图片
 	
 	
 
-	public String getTypeUrl() {
-		return typeUrl;
-	}
-	public void setTypeUrl(String typeUrl) {
-		this.typeUrl = typeUrl;
-	}
 	public int getCommodityTypeID() {
 		return commodityTypeID;
 	}
