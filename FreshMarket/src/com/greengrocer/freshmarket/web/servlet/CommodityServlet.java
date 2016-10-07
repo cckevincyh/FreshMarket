@@ -44,7 +44,7 @@ public class CommodityServlet extends BaseServlet {
 		//存入request域中
 		request.setAttribute("pb", pb);
 		//跳转到显示商品信息页面
-		return "/adminjsps/admin/commodity/list.jsp";
+		return "/list.jsp";
 		
 	}
 	
@@ -84,29 +84,8 @@ public class CommodityServlet extends BaseServlet {
 
 	
 	
-	/**
-	 * 根据商品id查询
-	 * @param request
-	 * @param response
-	 * @throws ServletException
-	 * @throws IOException
-	 */
-	public String findCommodity(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		//得到修改的商品编号
-		String commodityID = request.getParameter("commodityID");
-		//查询该商品信息
-		Commodity commodity = service.findCommodity(commodityID);
-		request.setAttribute("commodity", commodity);
-		//转发到展示的列表
-		return "/adminjsps/admin/commodity/showCommodity.jsp";
-	}
 	
-	
-	
-	
-	
-	
+
 	/**
 	 * 多条件查询商品信息
 	 * @param request
@@ -132,7 +111,7 @@ public class CommodityServlet extends BaseServlet {
 		//存入request域中
 		request.setAttribute("pb", pb);
 		//转发到修改的列表
-		return "/adminjsps/admin/commodity/list.jsp";
+		return "/list.jsp";
 	}
 	
 	

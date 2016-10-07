@@ -6,6 +6,7 @@ import java.util.Properties;
 import com.greengrocer.freshmarket.dao.AdminDao;
 import com.greengrocer.freshmarket.dao.CommodityDao;
 import com.greengrocer.freshmarket.dao.CommodityTypeDao;
+import com.greengrocer.freshmarket.dao.OrderDao;
 import com.greengrocer.freshmarket.dao.UserDao;
 
 /**
@@ -104,6 +105,28 @@ public class DaoFactory {
 		try{
 			Class clazz = Class.forName(daoClassName);
 			return (CommodityDao) clazz.newInstance();
+		}catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	
+	
+	/**
+	 * 给出一个配置文件，文件中给出CommodityDao接口的实现类名称
+	 * 我们这个方法，获取实现类的类名，通过反射完成创建对象
+	 * 
+	 * 返回一个具体CommodityDao的实现类对象
+	 * @return CommodityDao的实现类对象
+	 */
+	public static OrderDao getOrderDao(){
+		//得到dao实现类的名称
+		String daoClassName = props.getProperty("com.greengrocer.freshmarket.dao.OrderDao");
+		
+		//通过反射来创建实现类的对象
+		try{
+			Class clazz = Class.forName(daoClassName);
+			return (OrderDao) clazz.newInstance();
 		}catch (Exception e) {
 			throw new RuntimeException(e);
 		}

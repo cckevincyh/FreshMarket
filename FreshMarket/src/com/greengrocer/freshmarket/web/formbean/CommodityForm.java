@@ -8,8 +8,6 @@ public class CommodityForm {
 	private int commodityTypeID;	//商品种类编号
 	private String commodityName;			//商品名称
 	private Double commodityPrice;			//商品价格
-	private int commodityAmount;		//商品总数量
-	private int commodityLeaveNum;		//商品剩余数量
 	private String url;						//商品图片url
 	
 
@@ -40,18 +38,7 @@ public class CommodityForm {
 	public void setCommodityPrice(Double commodityPrice) {
 		this.commodityPrice = commodityPrice;
 	}
-	public int getCommodityAmount() {
-		return commodityAmount;
-	}
-	public void setCommodityAmount(int commodityAmount) {
-		this.commodityAmount = commodityAmount;
-	}
-	public int getCommodityLeaveNum() {
-		return commodityLeaveNum;
-	}
-	public void setCommodityLeaveNum(int commodityLeaveNum) {
-		this.commodityLeaveNum = commodityLeaveNum;
-	}
+
 	public String getUrl() {
 		return url;
 	}
@@ -59,13 +46,6 @@ public class CommodityForm {
 		this.url = url;
 	}
 
-	@Override
-	public String toString() {
-		return "Commodity [commodityID=" + commodityID + ", commodityTypeID="
-				+ commodityTypeID + ", commodityName=" + commodityName
-				+ ", commodityPrice=" + commodityPrice + ", commodityAmount="
-				+ commodityAmount + ", commodityLeaveNum=" + commodityLeaveNum
-				+ ", url=" + url + "]";
-	}
+	
 
 }

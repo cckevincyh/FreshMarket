@@ -41,7 +41,7 @@
 					   	
 					  </li>
 						<span style="color:#F00">${errorMessage }</span>
-							<input type="submit" onClick="myFunction()" value="登陆" >
+							<input type="submit"  value="登陆" >
 				</div>
 				<div class="clear"> </div>
 			  </ul>

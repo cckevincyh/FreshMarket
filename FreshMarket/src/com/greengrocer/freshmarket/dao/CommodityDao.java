@@ -52,6 +52,7 @@ public interface CommodityDao {
 	 */
 	public PageBean<Commodity> queryCommodity(int pageCode, int pageSize,CommodityForm commodityForm);
 	 
-	 
+
+
 	 
 }

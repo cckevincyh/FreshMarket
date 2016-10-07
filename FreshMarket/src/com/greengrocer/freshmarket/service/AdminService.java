@@ -32,4 +32,15 @@ public class AdminService {
 		//4.若执行到这里，说明没有错误，登录成功了，返回当前admin对象
 		return admin;
 	}
+	
+	
+	
+	/**
+	 * 修改密码
+	 * @param admim
+	 * @param newPass
+	 */
+	public void changePassword(Admin admim,String newPass){
+		//事务处理，消息回显，错误信息回显示，抛出UserException异常
+	}
 }

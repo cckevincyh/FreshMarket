@@ -5,13 +5,11 @@ import java.io.Serializable;
  * 商品信息类
  *
  */
-public class Commodity {
+public class Commodity implements Serializable{ //实现序列化是因为设置了session钝化
 	private int commodityID;			//商品编号
 	private CommodityType commodityType;	//商品种类
 	private String commodityName;			//商品名称
 	private Double commodityPrice;			//商品价格
-	private int commodityAmount;		//商品总数量
-	private int commodityLeaveNum;		//商品剩余数量
 	private String url;						//商品图片url
 	
 
@@ -42,18 +40,7 @@ public class Commodity {
 	public void setCommodityPrice(Double commodityPrice) {
 		this.commodityPrice = commodityPrice;
 	}
-	public int getCommodityAmount() {
-		return commodityAmount;
-	}
-	public void setCommodityAmount(int commodityAmount) {
-		this.commodityAmount = commodityAmount;
-	}
-	public int getCommodityLeaveNum() {
-		return commodityLeaveNum;
-	}
-	public void setCommodityLeaveNum(int commodityLeaveNum) {
-		this.commodityLeaveNum = commodityLeaveNum;
-	}
+
 	public String getUrl() {
 		return url;
 	}

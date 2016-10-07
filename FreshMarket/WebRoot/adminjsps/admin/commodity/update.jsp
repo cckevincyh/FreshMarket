@@ -65,12 +65,9 @@
     	<input type="hidden" name="commodityID" value="${commodity.commodityID}">
     	商品名称:<input type="text" name="commodityName" value="${commodity.commodityName}"><br>
     	商品类型:<select name="commodityTypeID" id="type">
-    				<option >===请选择类型===</option>
-  					
+    				<option >===请选择类型===</option>				
     			</select><br>
     	商品价格:<input type="text" name="commodityPrice" value="${commodity.commodityPrice }"><br>
-    	商品数量:<input type="text" name="commodityAmount" value="${commodity.commodityAmount }"><br>
-    	商品剩余数量：<input type="text" name="commodityLeaveNum" value="${commodity.commodityLeaveNum }"><br>
     	商品图片:<input type="file" name="image" value="${commodity.url }"/><br/>
     	<input type="submit" value="修改" onclick="javascript:return _onClick()">
     

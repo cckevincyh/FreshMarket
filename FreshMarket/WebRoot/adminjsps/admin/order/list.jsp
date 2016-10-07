@@ -1,7 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
@@ -32,92 +32,52 @@
 </style>
   </head>
   
-  <body style="background: rgb(254,238,189);">
-<h1>我的订单</h1>
+  <body>
+<h1>订单详情</h1>
+<c:choose>
+	<c:when test="${not empty orders and fn:length(orders)>0}">
+
 
 <table border="1" width="100%" cellspacing="0" background="black">
+	<c:forEach var="order" items="${orders }">
 	<tr bgcolor="rgb(78,78,78)" bordercolor="rgb(78,78,78)" style="color: white;">
 		<td colspan="6">
-			订单：8691b4150a0641e7a8729fd5e668820c　成交时间：2013-06-04 15:56:53　金额：<font color="red"><b>126.4</b></font>	已收货（完成）
+			订单：${order.ordersID }　成交时间：<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${order.orderTime }"/>　   　金额：<font color="red"><b>￥${order.total }</b></font>	
+			         <a style="padding-left: 100px">订单状态:
+			<c:choose>    
+				<c:when test="${order.state eq 1 }">
+					<a>未付款</a>
+				</c:when>
+				<c:when test="${order.state eq 2 }">发货</c:when>
+				<c:when test="${order.state eq 3 }">
+					<a>等待收货</a>
+				</c:when>
+				<c:when test="${order.state eq 4 }">已收货(完成)</c:when>
+			</c:choose>
+			</a>
 		</td>
 	</tr>
-	<tr bordercolor="rgb(78,78,78)" align="center">
-		<td width="15%">
-			<div><img src="<c:url value='/book_img/20385925-1_l.jpg'/>" height="75"/></div>
-		</td>
-		<td>书名：Struts2深入详解</td>
-		<td>单价：63.2元</td>
-		<td>作者：孙鑫</td>
-		<td>数量：2</td>
-		<td>小计：126.4元</td>
-	</tr>
+	  <c:forEach items="${order.orderItemList }" var="orderItem">
+			<tr bordercolor="rgb(78,78,78)" align="center">
+				<td width="15%">
+					<div style="width: 100px; height: 100px"><img src="<c:url value='${orderItem.commodity.url }'/>"  height="75"/></div>
+				</td>
+				<td>商品名称：${orderItem.commodity.commodityName }</td>
+				<td>商品种类：${orderItem.commodity.commodityType.commodityTypeName }</td>
+				<td>单价：￥${orderItem.commodity.commodityPrice }</td>
+				<td>数量：${orderItem.count }</td>
+				<td>小计：￥${orderItem.subtotal}</td>
+			</tr>
+	</c:forEach>
   
- 
-
-
-	<tr bgcolor="rgb(78,78,78)" bordercolor="rgb(78,78,78)" style="color: white;">
-		<td colspan="6">
-			订单：153839427aa94f359fe51932d9f9e383　成交时间：2013-06-04 15:02:31　金额：<font color="red"><b>63.2</b></font>　
-				   <a href="javascript:alert('发货成功！')">发货</a>
-		</td>
-	</tr>
-	<tr bordercolor="rgb(78,78,78)" align="center">
-		<td width="15%">
-			<div><img src="<c:url value='/book_img/20029394-1_l.jpg'/>" height="75"/></div>
-		</td>
-		<td>书名：精通Spring2.x</td>
-		<td>单价：63.2元</td>
-		<td>作者：陈华雄</td>
-		<td>数量：1</td>
-		<td>小计：63.2元</td>
-	</tr>
-  
-
-
- 
-	<tr bgcolor="rgb(78,78,78)" bordercolor="rgb(78,78,78)" style="color: white;">
-		<td colspan="6">
-			订单：d1b85bfc71564b18bf7802582a9fd934　成交时间：2013-06-04 15:01:01　金额：<font color="red"><b>137.0</b></font>	已收货（完成）
-		</td>
-	</tr>
-	<tr bordercolor="rgb(78,78,78)" align="center">
-		<td width="15%">
-			<div><img src="<c:url value='/book_img/20285763-1_l.jpg'/>" height="75"/></div>
-		</td>
-		<td>书名：Java核心技术卷1</td>
-		<td>单价：68.5元</td>
-		<td>作者：qdmmy6</td>
-		<td>数量：2</td>
-		<td>小计：137.0元</td>
-	</tr>
-  
-
-
-	<tr bgcolor="rgb(78,78,78)" bordercolor="rgb(78,78,78)" style="color: white;">
-		<td colspan="6">
-			订单：o1　成交时间：2013-06-04 12:47:41　金额：<font color="red"><b>100.0</b></font>　未付款
-		</td>
-	</tr>
-	<tr bordercolor="rgb(78,78,78)" align="center">
-		<td width="15%">
-			<div><img src="<c:url value='/book_img/9317290-1_l.jpg'/>" height="75"/></div>
-		</td>
-		<td>书名：Java编程思想（第4版）</td>
-		<td>单价：75.6元</td>
-		<td>作者：qdmmy6</td>
-		<td>数量：2</td>
-		<td>小计：300.0元</td>
-	</tr>
-	<tr bordercolor="rgb(78,78,78)" align="center">
-		<td width="15%">
-			<div><img src="<c:url value='/book_img/20285763-1_l.jpg'/>" height="75"/></div>
-		</td>
-		<td>书名：Java核心技术卷1</td>
-		<td>单价：68.5元</td>
-		<td>作者：qdmmy6</td>
-		<td>数量：3</td>
-		<td>小计：500.0元</td>
-	</tr>
+</c:forEach>
 </table>
+	</c:when>
+	<c:otherwise>
+		<h1 align="center">暂无订单</h1>
+	
+	</c:otherwise>
+
+</c:choose>
   </body>
 </html>

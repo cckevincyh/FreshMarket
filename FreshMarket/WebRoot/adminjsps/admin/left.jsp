@@ -22,7 +22,7 @@ function load() {
 	bar1.colorStyle = 2;
 	bar1.config.imgDir = "<c:url value='/menu/img/'/>";
 	bar1.config.radioButton=false;
-	bar1.add("管理员管理", "修改信息", "<c:url value='/adminjsps/admin/category/list.jsp'/>", "body");
+	bar1.add("管理员管理", "修改密码", "<c:url value='/adminjsps/admin/category/list.jsp'/>", "body");
 
 
 	bar1.add("分类管理", "查看分类", "<c:url value='/AdminCommodityTypeServlet?method=getAllCommodityTypes'/>", "body");
@@ -32,11 +32,11 @@ function load() {
 	bar1.add("商品管理", "添加商品", "<c:url value='/adminjsps/admin/commodity/add.jsp'/>", "body");
 	bar1.add("商品管理", "查询商品", "<c:url value='/adminjsps/admin/commodity/query.jsp'/>", "body");
 
-	bar1.add("订单管理", "所有订单", "<c:url value='/adminjsps/admin/order/list.jsp'/>", "body");
-	bar1.add("订单管理", "未付款订单", "<c:url value='/adminjsps/admin/order/list.jsp'/>", "body");
-	bar1.add("订单管理", "已付款订单", "<c:url value='/adminjsps/admin/order/list.jsp'/>", "body");
-	bar1.add("订单管理", "未收货订单", "<c:url value='/adminjsps/admin/order/list.jsp'/>", "body");
-	bar1.add("订单管理", "已完成订单", "<c:url value='/adminjsps/admin/order/list.jsp'/>", "body");
+	bar1.add("订单管理", "所有订单", "<c:url value='/AdminOrderServlet?method=findAllOrder'/>", "body");
+	bar1.add("订单管理", "未付款订单", "<c:url value='/AdminOrderServlet?method=findByState&state=1'/>", "body");
+	bar1.add("订单管理", "已付款订单", "<c:url value='/AdminOrderServlet?method=findByState&state=2'/>", "body");
+	bar1.add("订单管理", "未收货订单", "<c:url value='/AdminOrderServlet?method=findByState&state=3'/>", "body");
+	bar1.add("订单管理", "已完成订单", "<c:url value='/AdminOrderServlet?method=findByState&state=4'/>", "body");
 
 	var d = document.getElementById("menu");
 	d.innerHTML = bar1.toString();

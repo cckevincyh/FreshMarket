@@ -33,10 +33,9 @@ public class CommodityDaoImpl implements CommodityDao{
 	public void addCommodity(CommodityForm commodityForm) {
 		try {
 			String sql = "INSERT INTO Commodity(`commodityName`,`commodityTypeID`,`commodityPrice`," +
-					"`commodityAmount`,`commodityLeaveNum`,`url`) values(?,?,?,?,?,?)";
+					"`url`) values(?,?,?,?)";
 			Object[] params = {commodityForm.getCommodityName(),commodityForm.getCommodityTypeID(),
-					commodityForm.getCommodityPrice(),commodityForm.getCommodityAmount(),
-					commodityForm.getCommodityLeaveNum(),commodityForm.getUrl()};
+					commodityForm.getCommodityPrice(),commodityForm.getUrl()};
 			qr.update(sql, params);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -145,8 +144,7 @@ public class CommodityDaoImpl implements CommodityDao{
 					"`commodityName`=?,`commodityTypeID`=?,`commodityPrice`=?, `commodityAmount`=?," +
 					"`commodityLeaveNum`=?,`url`=? where `commodityID`=?;";
 			Object[] params = {commodityForm.getCommodityName(),commodityForm.getCommodityTypeID(),
-					commodityForm.getCommodityPrice(),commodityForm.getCommodityAmount(),
-					commodityForm.getCommodityLeaveNum(),commodityForm.getUrl(),commodityForm.getCommodityID()};
+					commodityForm.getCommodityPrice(),commodityForm.getUrl(),commodityForm.getCommodityID()};
 
 			qr.update(sql, params);
 		} catch (SQLException e) {
@@ -212,4 +210,12 @@ public class CommodityDaoImpl implements CommodityDao{
 		return pb;
 	}
 
+	
+
+
+	
+	
+	
+	
+	
 }

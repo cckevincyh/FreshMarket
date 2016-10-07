@@ -31,18 +31,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    		<td>商品种类</td>
 	    		<td>商品图片</td>
 	    		<td>商品价格</td>
-	    		<td>商品数量</td>
-	    		<td>商品剩余量</td>
 	    		<td>操作</td>		
     		</tr>
     			<tr>
-	    			<td>${commodity.commodityName}</td>
-	    			<td>${commodity.commodityType.commodityTypeName}</td>
+	    			<td width="30%">${commodity.commodityName}</td>
+	    			<td width="20%">${commodity.commodityType.commodityTypeName}</td>
 	    			<td><img src="${commodity.url}" width="90" height="90"/></td>
-	    			<td>${commodity.commodityPrice}</td>
-	    			<td>${commodity.commodityAmount}</td>
-	    			<td>${commodity.commodityLeaveNum}</td>
-	    			<td>
+	    			<td width="20%">${commodity.commodityPrice}</td>
+	    			<td width="20%">
 		    			<a href="javascript:void(0)" onclick="deleteitem(${commodity.commodityID})">删除</a>  |
 		    			     
 		    			<a href="${pageContext.request.contextPath}/AdminCommodityServlet?method=update&commodityID=${commodity.commodityID}">修改</a>

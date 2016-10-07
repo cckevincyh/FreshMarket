@@ -42,4 +42,14 @@ public class AdminDaoImpl implements AdminDao{
 		}
 	}
 
+	
+	/**
+	 * 修改密码
+	 */
+	@Override
+	public void changePassword(Admin admin, String newPass) {
+		
+		
+	}
+
 }

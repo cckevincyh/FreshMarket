@@ -16,4 +16,11 @@ public interface AdminDao {
 	 * @return 管理员对象
 	 */
 	public Admin findByAdminname(String adminname);
+	
+	/**
+	 * 修改密码
+	 * @param admin
+	 * @param newPass
+	 */
+	public void changePassword(Admin admin,String newPass);
 }

@@ -64,8 +64,6 @@
   					
     			</select><br>
     	商品价格:<input type="text" name="commodityPrice"><br>
-    	商品数量:<input type="text" name="commodityAmount"><br>
-    	商品剩余数量：<input type="text" name="commodityLeaveNum"><br>
     	商品图片:<input type="file" name="image"/><br/>
     	<input type="submit" value="添加" onclick="javascript:return _onClick()">
     

@@ -1,9 +1,11 @@
 package com.greengrocer.freshmarket.domain;
 
+import java.io.Serializable;
+
 /**
  * 商品种类信息类
  */
-public class CommodityType {
+public class CommodityType implements Serializable{ //实现序列化是因为设置了session钝化
 	
 	private int commodityTypeID;		//商品种类编号
 	private String commodityTypeName;		//商品种类名称

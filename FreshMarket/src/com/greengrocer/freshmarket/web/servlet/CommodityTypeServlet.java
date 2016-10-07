@@ -1,5 +1,8 @@
 package com.greengrocer.freshmarket.web.servlet;
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -37,6 +40,20 @@ public class CommodityTypeServlet extends BaseServlet {
 		return "/adminjsps/admin/commodityType/mod.jsp";
 	}
 
+	
+	/**
+	 * 得到所有的商品种类信息并以字符串返回
+	 * @param request
+	 * @param response
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public void getAllCommodityType(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String types = service.getAllCommodityType();
+		response.getWriter().print(types);
+	}
+	
 	
 	
 }

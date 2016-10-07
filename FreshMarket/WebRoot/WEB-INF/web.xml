@@ -59,6 +59,27 @@
     <servlet-name>AdminCommodityTypeServlet</servlet-name>
     <servlet-class>com.greengrocer.freshmarket.web.servlet.admin.AdminCommodityTypeServlet</servlet-class>
   </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>CartServlet</servlet-name>
+    <servlet-class>com.greengrocer.freshmarket.web.servlet.CartServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>OrderServlet</servlet-name>
+    <servlet-class>com.greengrocer.freshmarket.web.servlet.OrderServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AdminOrderServlet</servlet-name>
+    <servlet-class>com.greengrocer.freshmarket.web.servlet.admin.AdminOrderServlet</servlet-class>
+  </servlet>
+
+
+
 
 
 
@@ -95,6 +116,18 @@
   <servlet-mapping>
     <servlet-name>AdminCommodityTypeServlet</servlet-name>
     <url-pattern>/AdminCommodityTypeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CartServlet</servlet-name>
+    <url-pattern>/CartServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>OrderServlet</servlet-name>
+    <url-pattern>/OrderServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AdminOrderServlet</servlet-name>
+    <url-pattern>/AdminOrderServlet</url-pattern>
   </servlet-mapping>
   
   <welcome-file-list>

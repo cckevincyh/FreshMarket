@@ -77,5 +77,20 @@ public class AdminServlet extends BaseServlet {
 	
 	
 	
+	/**
+	 * 修改密码
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public String changePassword(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		return null;
+	}
+	
+	
 
 }
