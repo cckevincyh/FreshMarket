@@ -22,7 +22,7 @@ function load() {
 	bar1.colorStyle = 2;
 	bar1.config.imgDir = "<c:url value='/menu/img/'/>";
 	bar1.config.radioButton=false;
-	bar1.add("管理员管理", "修改密码", "<c:url value='/adminjsps/admin/category/list.jsp'/>", "body");
+	bar1.add("管理员管理", "修改密码", "<c:url value='/adminjsps/admin/changePassword.jsp'/>", "body");
 
 
 	bar1.add("分类管理", "查看分类", "<c:url value='/AdminCommodityTypeServlet?method=getAllCommodityTypes'/>", "body");

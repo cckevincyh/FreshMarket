@@ -51,4 +51,30 @@ public class UserService {
 		//4.若执行到这里，说明没有错误，登录成功了，返回当前user对象
 		return user;
 	}
+	
+	/**
+	 * 完善个人信息
+	 * @param user
+	 */
+	public void complementUser(User user){
+		//完善个人信息
+		userDao.complementUser(user);
+	}
+	
+	/**
+	 * 查询用户详细信息
+	 * @param username
+	 * @return
+	 */
+	public User findUser(String username){
+		return userDao.findByUsername(username);
+	}
+	
+	/**
+	 * 修改收货地址
+	 * @param user
+	 */
+	public void changeAddress(User user){
+		userDao.changeAddress(user);
+	}
 }

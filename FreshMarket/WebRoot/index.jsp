@@ -7,6 +7,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>首页</title>
+
+<script type="text/javascript">
+<c:if test="${not empty message}">
+	window.onload = function(){
+		
+			alert("${message}");
+		
+	}
+</c:if>
+</script>
 </head>
 <style type="text/css">
 \
@@ -25,7 +35,7 @@
 		    border-collapse: collapse;
 		}
 		.table td{
-			border-bottom:3px solid red;/*固定边框,1像素*/
+			border-bottom:0px solid red;/*固定边框,1像素*/
 
 			
 		}

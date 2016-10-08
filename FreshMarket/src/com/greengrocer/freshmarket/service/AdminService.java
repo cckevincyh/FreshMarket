@@ -6,6 +6,7 @@ import com.greengrocer.freshmarket.dao.impl.AdminDaoImpl;
 import com.greengrocer.freshmarket.domain.Admin;
 import com.greengrocer.freshmarket.exception.UserException;
 import com.greengrocer.freshmarket.utils.ServiceUtils;
+import com.greengrocer.freshmarket.web.formbean.AdminForm;
 
 
 public class AdminService {
@@ -39,8 +40,20 @@ public class AdminService {
 	 * 修改密码
 	 * @param admim
 	 * @param newPass
+	 * @throws UserException 
 	 */
-	public void changePassword(Admin admim,String newPass){
-		//事务处理，消息回显，错误信息回显示，抛出UserException异常
+	public void changePassword(AdminForm form) throws UserException{
+		Admin admin = adminDao.findByAdminname(form.getUsername());
+		//md5加密输入的原密码
+		String oldpass = ServiceUtils.md5(form.getOldpassword());
+		//判断输入的原密码是否正确
+		if(!oldpass.equals(admin.getPassword())){
+			throw new UserException("原密码错误!!");
+		}else{
+			//md5加密新密码
+			form.setNewpassword1(ServiceUtils.md5(form.getNewpassword1()));
+			//修改密码
+			adminDao.changePassword(form);
+		}
 	}
 }

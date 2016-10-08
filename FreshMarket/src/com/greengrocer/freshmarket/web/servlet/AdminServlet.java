@@ -1,6 +1,7 @@
 package com.greengrocer.freshmarket.web.servlet;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +13,7 @@ import com.greengrocer.freshmarket.domain.Admin;
 import com.greengrocer.freshmarket.exception.UserException;
 import com.greengrocer.freshmarket.service.AdminService;
 import com.greengrocer.freshmarket.utils.WebUtils;
+import com.greengrocer.freshmarket.web.formbean.AdminForm;
 
 
 
@@ -87,8 +89,34 @@ public class AdminServlet extends BaseServlet {
 	 */
 	public String changePassword(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		//封装表单数据到AdminForm中
+		AdminForm adminForm = WebUtils.request2Bean(request, AdminForm.class);
+		//错误校验
+		boolean b = adminForm.validate();
+		if(!b){
+			//显示错误消息
+			request.setAttribute("errors", adminForm.getErrors());
+			//回显数据
+			request.setAttribute("form", adminForm);
+			//跳转会修改页面
+			return "/adminjsps/admin/changePassword.jsp";
+		}
+		AdminService service = new AdminService();
+		try {
+			service.changePassword(adminForm);
+		} catch (UserException e) {
+			adminForm.getErrors().put("oldpassword", e.getMessage());
+			//显示错误消息
+			request.setAttribute("errors", adminForm.getErrors());
+			//回显数据
+			request.setAttribute("form", adminForm);
+			//跳转会修改页面
+			return "/adminjsps/admin/changePassword.jsp";
+		}
+		//程序到这里表示修改成功，显示成功信息
+		request.setAttribute("message", "修改成功");
+		return "/message.jsp";
 		
-		return null;
 	}
 	
 	

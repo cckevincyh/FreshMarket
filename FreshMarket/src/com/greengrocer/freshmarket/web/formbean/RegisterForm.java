@@ -11,6 +11,7 @@ public class RegisterForm {
 	private String password;
 	private String password2;
 	private String verifyCode;//验证码
+	private Map<String,String> errors = new HashMap<String, String>() ;	//存放错误集合
 	
 	public String getVerifyCode() {
 		return verifyCode;
@@ -22,7 +23,6 @@ public class RegisterForm {
 	}
 
 
-	private Map<String,String> errors = new HashMap<String, String>() ;	//存放错误集合
 	
 
 

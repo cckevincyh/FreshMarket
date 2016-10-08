@@ -16,4 +16,17 @@ public interface UserDao {
 	 */
 	public User findByUsername(String username);
 	
+	
+	
+	/**
+	 * 完善用户信息
+	 * @param user
+	 */
+	public void complementUser(User user);
+	
+	/**
+	 * 修改收货地址
+	 * @param address
+	 */
+	public void changeAddress(User user);
 }

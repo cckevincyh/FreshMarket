@@ -46,4 +46,37 @@ public class UserDaoImpl implements UserDao{
 	}
 
 
+	/**
+	 * 完善用户信息
+	 */
+	@Override
+	public void complementUser(User user) {
+		String sql = "UPDATE USERS SET sex=? ,address=? , phone=?, email=? WHERE USERNAME=?";
+		Object []params = {user.getSex(),user.getAddress(),user.getPhone(),user.getEmail(),user.getUsername()};
+		try {
+			qr.update(sql, params);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+
+	/**
+	 * 修改收货地址
+	 */
+	@Override
+	public void changeAddress(User user) {
+		String sql = "UPDATE USERS SET address=?  WHERE USERNAME=?";
+		Object []params = {user.getAddress(),user.getUsername()};
+		try {
+			qr.update(sql, params);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+
+
+
+
 }

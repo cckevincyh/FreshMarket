@@ -1,6 +1,9 @@
 package com.greengrocer.freshmarket.web.servlet;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -150,5 +153,111 @@ public class UserServlet extends BaseServlet {
 		return "r:/index.jsp";
 	}
 
+	
+	
+	/**
+	 * 完善个人信息
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public String complementUser(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		User user = WebUtils.request2Bean(request, User.class);
+		//校验数据
+		HashMap<String, String> errors = validate(user);
+		if(errors.size()>0){
+			//保存错误集合，回显
+			request.setAttribute("errors", errors);
+			//回显数据
+			request.setAttribute("user", user);
+			return "/users/message.jsp";
+		}
+		UserService service = new UserService();
+		//完善信息
+		service.complementUser(user);
+		request.setAttribute("message", "修改成功!!");
+		return "/index.jsp";
+	}
+
+
+	//校验数据
+	private HashMap<String, String> validate(User user) {
+		HashMap<String, String> errors = new HashMap<String, String>();
+		if(user.getPhone()==null || user.getPhone().trim().equals("")){
+			errors.put("phone", "手机号码不能为空!!");
+		}else{
+			//电话号码校验
+			 Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$");     
+		     Matcher m = p.matcher(user.getPhone());   
+		     if(!m.matches()){
+		    	 errors.put("phone", "手机号码格式不正确!!");
+		     }
+		}
+	     if(user.getEmail()==null || user.getEmail().trim().equals("")){
+	    	 errors.put("email", "邮箱不能为空!!");
+	     }else{
+		     String str="^([a-zA-Z0-9]*[-_]?[a-zA-Z0-9]+)*@([a-zA-Z0-9]*[-_]?[a-zA-Z0-9]+)+[\\.][A-Za-z]{2,3}([\\.][A-Za-z]{2})?$";
+		     Pattern p = Pattern.compile(str);     
+		     Matcher m = p.matcher(user.getEmail()); 
+		     if(!m.matches()){
+		    	 errors.put("email", "邮箱格式不正确!!");
+		     }
+	     }
+	     if(user.getAddress()==null || user.getAddress().trim().equals("")){
+	    	 errors.put("address", "收货地址不能为空!!");
+	     }
+		return errors;
+	}
+	
+	/**
+	 * 查询用户详细信息
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public String findUser(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String username = request.getParameter("username");
+		UserService service = new UserService();
+		//查询用户详细信息
+		User user = service.findUser(username);
+		//存入request域中
+		request.setAttribute("user", user);
+		return "/users/message.jsp";
+	}
+	
+	/**
+	 * 修改收货地址
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public String changeAddress(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		User user = WebUtils.request2Bean(request, User.class);
+		HashMap<String, String> errors = new HashMap<String, String>();
+	     if(user.getAddress()==null || user.getAddress().trim().equals("")){
+	    	 errors.put("address", "收货地址不能为空!!");
+	     }
+	     if(errors.size()>0){
+			//保存错误集合，回显
+			request.setAttribute("errors", errors);
+			//回显数据
+			request.setAttribute("user", user);
+			return "/users/changeAddress.jsp";
+		}
+	     UserService service = new UserService();
+	     //修改收货地址
+	     service.changeAddress(user);
+	     request.setAttribute("message", "修改成功!!");
+		return "/users/cart_orderform.jsp";
+	}
 
 }

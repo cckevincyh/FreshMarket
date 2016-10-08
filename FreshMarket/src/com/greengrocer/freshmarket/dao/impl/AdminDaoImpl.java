@@ -8,6 +8,7 @@ import org.apache.commons.dbutils.handlers.BeanHandler;
 import com.greengrocer.freshmarket.dao.AdminDao;
 import com.greengrocer.freshmarket.dao.TxQueryRunner;
 import com.greengrocer.freshmarket.domain.Admin;
+import com.greengrocer.freshmarket.web.formbean.AdminForm;
 
 public class AdminDaoImpl implements AdminDao{
 
@@ -47,8 +48,14 @@ public class AdminDaoImpl implements AdminDao{
 	 * 修改密码
 	 */
 	@Override
-	public void changePassword(Admin admin, String newPass) {
-		
+	public void changePassword(AdminForm form) {
+		String sql = "UPDATE ADMINS SET `password` = ? WHERE username=?";
+		Object []params = {form.getNewpassword1(),form.getUsername()}; 
+		try {
+			qr.update(sql, params);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
 		
 	}
 

@@ -1,6 +1,7 @@
 package com.greengrocer.freshmarket.dao;
 
 import com.greengrocer.freshmarket.domain.Admin;
+import com.greengrocer.freshmarket.web.formbean.AdminForm;
 
 
 
@@ -22,5 +23,5 @@ public interface AdminDao {
 	 * @param admin
 	 * @param newPass
 	 */
-	public void changePassword(Admin admin,String newPass);
+	public void changePassword(AdminForm form);
 }
