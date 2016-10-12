@@ -34,9 +34,9 @@
 <body>
 	<div class="main">
 		<div class="header" >
-			<h1>Login or Create a Free Account!</h1>
+			<h1>新鲜购注册页面</h1>
 		</div>
-		<p>Lorem iopsum dolor sit amit,consetetur sadipscing eliter,sed diam voluptua.At vero  eso et accusam et justo duo dolores et ea rebum. </p>
+		
 			<form action='<c:url value="/UserServlet?method=register"></c:url>' method="post">
 			  <ul class="right-form">
 			    <h2>注册:</h2>

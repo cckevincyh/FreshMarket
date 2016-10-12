@@ -30,6 +30,8 @@
 		margin: 10px;
 	}
 </style>
+
+
   </head>
   
   <body>
@@ -48,7 +50,7 @@
 				<c:when test="${order.state eq 1 }">
 					<a>未付款</a>
 				</c:when>
-				<c:when test="${order.state eq 2 }">发货</c:when>
+				<c:when test="${order.state eq 2 }"><a href="<c:url value='/AdminOrderServlet?method=delivery&ordersID=${order.ordersID }'/>">发货</a></c:when>
 				<c:when test="${order.state eq 3 }">
 					<a>等待收货</a>
 				</c:when>

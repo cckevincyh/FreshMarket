@@ -175,10 +175,19 @@
     <filter-name>AdminFilter</filter-name>
     <url-pattern>/adminjsps/*</url-pattern>
   </filter-mapping>
+  <filter-mapping>
+    <filter-name>AdminFilter</filter-name>
+    <url-pattern>/AdminCommodityServlet</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>AdminFilter</filter-name>
+    <url-pattern>/AdminOrderServlet</url-pattern>
+  </filter-mapping>
 <!-- 管理员权限的过滤 -->
  
  
-  <!-- 注册用户权限的过滤 -->
+  <!-- 用户权限的过滤 -->
     <filter>
     <display-name>UserFilter</display-name>
     <filter-name>UserFilter</filter-name>
@@ -189,7 +198,15 @@
     <filter-name>UserFilter</filter-name>
     <url-pattern>/users/*</url-pattern>
   </filter-mapping>
-<!-- 注册用户权限的过滤 -->
+  <filter-mapping>
+    <filter-name>UserFilter</filter-name>
+    <url-pattern>/CartServlet</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>UserFilter</filter-name>
+    <url-pattern>/OrderServlet</url-pattern>
+  </filter-mapping>
+<!-- 用户权限的过滤 -->
 
 
 

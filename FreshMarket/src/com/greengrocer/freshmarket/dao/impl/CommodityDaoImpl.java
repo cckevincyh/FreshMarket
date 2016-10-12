@@ -181,7 +181,7 @@ public class CommodityDaoImpl implements CommodityDao{
 				_sql.append("AND CommodityName like '%"+commodityForm.getCommodityName()+"%' ");
 				sql.append("AND CommodityName like '%"+commodityForm.getCommodityName()+"%' ");
 			}
-			if(commodityForm.getCommodityTypeID()!=-1){
+			if(commodityForm.getCommodityTypeID()!=-1 ){
 				_sql.append("AND commodity.`commodityTypeID`=? ");
 				sql.append("AND commodity.`commodityTypeID`=? ");
 				params.add(commodityForm.getCommodityTypeID());

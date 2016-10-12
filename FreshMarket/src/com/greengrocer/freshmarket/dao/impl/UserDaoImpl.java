@@ -8,6 +8,7 @@ import org.apache.commons.dbutils.handlers.BeanHandler;
 import com.greengrocer.freshmarket.dao.TxQueryRunner;
 import com.greengrocer.freshmarket.dao.UserDao;
 import com.greengrocer.freshmarket.domain.User;
+import com.greengrocer.freshmarket.web.formbean.UpdatePasswordForm;
 
 public class UserDaoImpl implements UserDao{
 
@@ -36,8 +37,8 @@ public class UserDaoImpl implements UserDao{
 	 */
 	@Override
 	public User findByUsername(String username) {
-		String sql = "SELECT * FROM USERS WHERE USERNAME=?";
 		try {
+			String sql = "SELECT * FROM USERS WHERE USERNAME=?";
 			return qr.query(sql, new BeanHandler<User>(User.class),username);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -51,9 +52,9 @@ public class UserDaoImpl implements UserDao{
 	 */
 	@Override
 	public void complementUser(User user) {
-		String sql = "UPDATE USERS SET sex=? ,address=? , phone=?, email=? WHERE USERNAME=?";
-		Object []params = {user.getSex(),user.getAddress(),user.getPhone(),user.getEmail(),user.getUsername()};
 		try {
+			String sql = "UPDATE USERS SET sex=? ,address=? , phone=?, email=? WHERE USERNAME=?";
+			Object []params = {user.getSex(),user.getAddress(),user.getPhone(),user.getEmail(),user.getUsername()};
 			qr.update(sql, params);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -66,13 +67,29 @@ public class UserDaoImpl implements UserDao{
 	 */
 	@Override
 	public void changeAddress(User user) {
-		String sql = "UPDATE USERS SET address=?  WHERE USERNAME=?";
-		Object []params = {user.getAddress(),user.getUsername()};
 		try {
+			String sql = "UPDATE USERS SET address=?  WHERE USERNAME=?";
+			Object []params = {user.getAddress(),user.getUsername()};
 			qr.update(sql, params);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+
+	/**
+	 * 修改密码
+	 */
+	@Override
+	public void changePassword(UpdatePasswordForm form) {
+		try {
+			String sql = "UPDATE USERS SET `password` = ? WHERE username=?";
+			Object []params = {form.getNewpassword1(),form.getUsername()}; 
+			qr.update(sql, params);
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		
 	}
 
 

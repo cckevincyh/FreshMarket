@@ -17,6 +17,7 @@ import com.greengrocer.freshmarket.exception.UserException;
 import com.greengrocer.freshmarket.service.UserService;
 import com.greengrocer.freshmarket.utils.WebUtils;
 import com.greengrocer.freshmarket.web.formbean.RegisterForm;
+import com.greengrocer.freshmarket.web.formbean.UpdatePasswordForm;
 
 public class UserServlet extends BaseServlet {
 
@@ -178,6 +179,11 @@ public class UserServlet extends BaseServlet {
 		UserService service = new UserService();
 		//完善信息
 		service.complementUser(user);
+		//session域中的对象也需要修改
+		User sessionUser = (User) request.getSession().getAttribute("sessionUser");
+		sessionUser.setAddress(user.getAddress());
+		sessionUser.setEmail(user.getEmail());
+		sessionUser.setPhone(user.getPhone());
 		request.setAttribute("message", "修改成功!!");
 		return "/index.jsp";
 	}
@@ -244,7 +250,7 @@ public class UserServlet extends BaseServlet {
 		User user = WebUtils.request2Bean(request, User.class);
 		HashMap<String, String> errors = new HashMap<String, String>();
 	     if(user.getAddress()==null || user.getAddress().trim().equals("")){
-	    	 errors.put("address", "收货地址不能为空!!");
+	    	 errors.put("address", "收货地址不能为空!!"); 
 	     }
 	     if(errors.size()>0){
 			//保存错误集合，回显
@@ -256,8 +262,52 @@ public class UserServlet extends BaseServlet {
 	     UserService service = new UserService();
 	     //修改收货地址
 	     service.changeAddress(user);
+	     //session域中的对象的地址也需要改变
+	     User sessionUser = (User) request.getSession().getAttribute("sessionUser");
+	     sessionUser.setAddress(user.getAddress());
 	     request.setAttribute("message", "修改成功!!");
 		return "/users/cart_orderform.jsp";
 	}
 
+	
+	/**
+	 * 修改密码
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public String changePassword(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		//封装表单数据到AdminForm中
+		UpdatePasswordForm form= WebUtils.request2Bean(request, UpdatePasswordForm.class);
+		//错误校验
+		boolean b = form.validate();
+		if(!b){
+			//显示错误消息
+			request.setAttribute("errors", form.getErrors());
+			//回显数据
+			request.setAttribute("form", form);
+			//跳转会修改页面
+			return "/users/changePassword.jsp";
+		}
+		UserService service = new UserService();
+		try {
+			service.changePassword(form);
+		} catch (UserException e) {
+			form.getErrors().put("oldpassword", e.getMessage());
+			//显示错误消息
+			request.setAttribute("errors", form.getErrors());
+			//回显数据
+			request.setAttribute("form", form);
+			//跳转会修改页面
+			return "/users/changePassword.jsp";
+		}
+		//程序到这里表示修改成功，显示成功信息
+		request.setAttribute("message", "修改成功");
+		return "/index.jsp";
+		
+	}
+	
 }

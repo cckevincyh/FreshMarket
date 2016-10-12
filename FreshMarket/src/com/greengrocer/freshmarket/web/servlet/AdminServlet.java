@@ -13,7 +13,7 @@ import com.greengrocer.freshmarket.domain.Admin;
 import com.greengrocer.freshmarket.exception.UserException;
 import com.greengrocer.freshmarket.service.AdminService;
 import com.greengrocer.freshmarket.utils.WebUtils;
-import com.greengrocer.freshmarket.web.formbean.AdminForm;
+import com.greengrocer.freshmarket.web.formbean.UpdatePasswordForm;
 
 
 
@@ -90,7 +90,7 @@ public class AdminServlet extends BaseServlet {
 	public String changePassword(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		//封装表单数据到AdminForm中
-		AdminForm adminForm = WebUtils.request2Bean(request, AdminForm.class);
+		UpdatePasswordForm adminForm = WebUtils.request2Bean(request, UpdatePasswordForm.class);
 		//错误校验
 		boolean b = adminForm.validate();
 		if(!b){

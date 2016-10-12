@@ -1,6 +1,7 @@
 package com.greengrocer.freshmarket.dao;
 
 import com.greengrocer.freshmarket.domain.User;
+import com.greengrocer.freshmarket.web.formbean.UpdatePasswordForm;
 
 public interface UserDao {
 
@@ -29,4 +30,10 @@ public interface UserDao {
 	 * @param address
 	 */
 	public void changeAddress(User user);
+	
+	/**
+	 * 修改密码
+	 * @param form
+	 */
+	public void changePassword(UpdatePasswordForm form);
 }

@@ -2,10 +2,12 @@ package com.greengrocer.freshmarket.service;
 
 import com.greengrocer.freshmarket.dao.UserDao;
 import com.greengrocer.freshmarket.dao.factory.DaoFactory;
+import com.greengrocer.freshmarket.domain.Admin;
 import com.greengrocer.freshmarket.domain.User;
 import com.greengrocer.freshmarket.exception.UserException;
 import com.greengrocer.freshmarket.utils.ServiceUtils;
 import com.greengrocer.freshmarket.utils.WebUtils;
+import com.greengrocer.freshmarket.web.formbean.UpdatePasswordForm;
 
 
 public class UserService {
@@ -76,5 +78,27 @@ public class UserService {
 	 */
 	public void changeAddress(User user){
 		userDao.changeAddress(user);
+	}
+
+
+	/**
+	 * 修改密码
+	 * @param form
+	 * @throws UserException 
+	 */
+	public void changePassword(UpdatePasswordForm form) throws UserException {
+		User user = userDao.findByUsername(form.getUsername());
+		//md5加密输入的原密码
+		String oldpass = ServiceUtils.md5(form.getOldpassword());
+		//判断输入的原密码是否正确
+		if(!oldpass.equals(user.getPassword())){
+			throw new UserException("原密码错误!!");
+		}else{
+			//md5加密新密码
+			form.setNewpassword1(ServiceUtils.md5(form.getNewpassword1()));
+			//修改密码
+			userDao.changePassword(form);
+		}
+		
 	}
 }

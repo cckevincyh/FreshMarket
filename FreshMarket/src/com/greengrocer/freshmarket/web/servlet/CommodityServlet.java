@@ -55,7 +55,7 @@ public class CommodityServlet extends BaseServlet {
 	 */
 	private String getUrl(HttpServletRequest request) {
 		String url = request.getQueryString();
-		 //url中有可能导游pageCode，需要把它截取掉
+		 //url中有可能存在pageCode，需要把它截取掉
 		int index = url.lastIndexOf("&pageCode=");
 		if(index == -1) {
 			return url;

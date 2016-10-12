@@ -6,7 +6,7 @@ import com.greengrocer.freshmarket.dao.impl.AdminDaoImpl;
 import com.greengrocer.freshmarket.domain.Admin;
 import com.greengrocer.freshmarket.exception.UserException;
 import com.greengrocer.freshmarket.utils.ServiceUtils;
-import com.greengrocer.freshmarket.web.formbean.AdminForm;
+import com.greengrocer.freshmarket.web.formbean.UpdatePasswordForm;
 
 
 public class AdminService {
@@ -42,7 +42,7 @@ public class AdminService {
 	 * @param newPass
 	 * @throws UserException 
 	 */
-	public void changePassword(AdminForm form) throws UserException{
+	public void changePassword(UpdatePasswordForm form) throws UserException{
 		Admin admin = adminDao.findByAdminname(form.getUsername());
 		//md5加密输入的原密码
 		String oldpass = ServiceUtils.md5(form.getOldpassword());
