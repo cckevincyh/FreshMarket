@@ -1,5 +1,9 @@
 package com.greengrocer.freshmarket.web.formbean;
 
+import java.util.HashMap;
+
+
+
 /**
  * 提交的商品信息表单类
  */
@@ -9,7 +13,7 @@ public class CommodityForm {
 	private String commodityName;			//商品名称
 	private Double commodityPrice;			//商品价格
 	private String url;						//商品图片url
-	
+	private HashMap<String, String> errors = new HashMap<String, String>();
 
 	public int getCommodityTypeID() {
 		return commodityTypeID;
@@ -45,6 +49,8 @@ public class CommodityForm {
 	public void setUrl(String url) {
 		this.url = url;
 	}
+	
+	
 
 	
 

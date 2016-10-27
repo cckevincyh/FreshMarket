@@ -88,7 +88,7 @@ public class OrderDaoImpl implements OrderDao{
 		 */
 		try {
 			//查询用户下所有的订单
-			String sql = "SELECT * FROM orders WHERE userID=?";
+			String sql = "SELECT * FROM orders WHERE userID=? order by ordertime";
 			List<Order> orderList = qr.query(sql, new BeanListHandler<Order>(Order.class),uid);
 			//循环遍历其中的每一个Order，为其加载它自己所有的订单项(订单条目)
 			for (Order order : orderList) {
@@ -168,7 +168,7 @@ public class OrderDaoImpl implements OrderDao{
 	public Order load(String oid) {
 		try {
 			//得到当前用户的所有订单
-			String sql = "SELECT * FROM orders WHERE ordersID=?";
+			String sql = "SELECT * FROM orders WHERE ordersID=? order by ordertime";
 			Order order =  qr.query(sql, new BeanHandler<Order>(Order.class),oid);
 			//为order加载它所有的订单条目
 			loadOrderItems(order);
@@ -186,7 +186,7 @@ public class OrderDaoImpl implements OrderDao{
 	@Override
 	public int getStateByOid(String oid) {
 		try {
-			String sql = "SELECT state FROM orders WHERE ordersID=?";
+			String sql = "SELECT state FROM orders WHERE ordersID=? order by ordertime";
 			return (Integer) qr.query(sql, new ScalarHandler(),oid);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -217,7 +217,7 @@ public class OrderDaoImpl implements OrderDao{
 	public List<Order> findAllOrder() {
 		try {
 			//查询所有的订单
-			String sql = "SELECT * FROM orders";
+			String sql = "SELECT * FROM orders order by ordertime";
 			List<Order> orderList = qr.query(sql, new BeanListHandler<Order>(Order.class));
 			//循环遍历其中的每一个Order，为其加载它自己所有的订单项(订单条目)
 			for (Order order : orderList) {

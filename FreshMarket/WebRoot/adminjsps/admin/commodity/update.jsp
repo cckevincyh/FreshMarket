@@ -49,12 +49,37 @@
     
     </script>
     <script type="text/javascript">
-    		function _onClick(){
+    	function _onClick(){
+    			var isOK = true;
+    			var cn = document.getElementById("cn").value;
+    			var cp = document.getElementById("cp").value;
     			var op = document.getElementById("type");
+    			var img = document.getElementById("img").value;
+    			var reg = new RegExp("[\\u4E00-\\u9FFF]+","g");
+    			if(cn.trim()==""){
+    				alert("商品名称不能为空!!!");
+    				isOK = false;
+    			}else if(!reg.test(cn)){
+    				alert("商品名称必须为中文!!");
+    				isOK = false;
+    			}
+    			if(cp.trim()==""){
+    				alert("商品价格不能为空!!");
+    				isOK = false;
+    			}else if(cp<=0 || cp!=parseInt(cp)){
+    				alert("商品价格必须为正整数!!");
+    				isOK = false;
+    			}
     			if(op.value=="===请选择类型==="){
     				alert("请选择类型!!");
-    				return false;
+    				isOK = false;
     			}
+    			if(img.trim()==""){
+    				alert("请选择图片!!");
+    				isOK = false;
+    			}
+    			
+    			return isOK;
     		} 
     </script>
   </head>

@@ -17,6 +17,7 @@ public class CommodityService {
 	 * @param commodity 商品信息实体
 	 */
 	public void addCommodity(CommodityForm commodityForm){
+		
 		commodityDao.addCommodity(commodityForm);
 	}
 	

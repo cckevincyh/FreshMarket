@@ -22,7 +22,7 @@ public class CommodityTypeDaoImpl implements CommodityTypeDao{
 	@Override
 	public List<CommodityType> findAllCommodityType() {
 		try {
-			String sql = "SELECT * FROM CommodityType";
+			String sql = "SELECT * FROM CommodityType order by CommodityTypeID";
 			return qr.query(sql, new BeanListHandler<CommodityType>(CommodityType.class));
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -52,7 +52,7 @@ public class CommodityTypeDaoImpl implements CommodityTypeDao{
 	@Override
 	public CommodityType findCommodityType(String commodityTypeID) {
 		try {
-			String sql ="SELECT * FROM CommodityType WHERE CommodityTypeID = ?;";
+			String sql ="SELECT * FROM CommodityType WHERE CommodityTypeID = ? order by CommodityTypeID;";
 			return qr.query(sql, commodityTypeID, new BeanHandler<CommodityType>(CommodityType.class));
 		} catch (SQLException e) {
 			throw new RuntimeException(e);

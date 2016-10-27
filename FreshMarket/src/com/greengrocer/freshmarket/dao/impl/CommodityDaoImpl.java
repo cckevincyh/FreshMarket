@@ -60,7 +60,7 @@ public class CommodityDaoImpl implements CommodityDao{
 			int totalRecord = num.intValue(); //得到总记录数
 			pb.setTotalRecord(totalRecord);	//设置总记录数
 			
-			sql = "SELECT * FROM Commodity limit ?,?; ";
+			sql = "SELECT * FROM Commodity order by commodityID limit ?,? ;";
 			Object[] params = {(pageCode-1)*pageSize,pageSize};
 			//得到分页后的商品信息集合
 			List<Commodity> commodities = qr.query(sql, params, new BeanListHandler<Commodity>(Commodity.class));		
@@ -101,7 +101,7 @@ public class CommodityDaoImpl implements CommodityDao{
 	public Commodity findCommodity(String commodityID){
 		try {
 			String sql = "SELECT * FROM  commodityType ,commodity WHERE " +
-					"commodityType.commodityTypeID = commodity.commodityTypeID AND CommodityID = ?";
+					"commodityType.commodityTypeID = commodity.commodityTypeID AND CommodityID = ? order by commodityID";
 			//查询出List的map集合
 			Map<String, Object> map = qr.query(sql, commodityID,new MapHandler());
 			//得到Commodity对象
@@ -141,8 +141,8 @@ public class CommodityDaoImpl implements CommodityDao{
 	public void updateCommodity(CommodityForm commodityForm) {
 		try {
 			String sql = "UPDATE commodity SET " +
-					"`commodityName`=?,`commodityTypeID`=?,`commodityPrice`=?, `commodityAmount`=?," +
-					"`commodityLeaveNum`=?,`url`=? where `commodityID`=?;";
+					"`commodityName`=?,`commodityTypeID`=?,`commodityPrice`=?, "+
+					"`url`=? where `commodityID`=?;";
 			Object[] params = {commodityForm.getCommodityName(),commodityForm.getCommodityTypeID(),
 					commodityForm.getCommodityPrice(),commodityForm.getUrl(),commodityForm.getCommodityID()};
 
@@ -187,7 +187,7 @@ public class CommodityDaoImpl implements CommodityDao{
 				params.add(commodityForm.getCommodityTypeID());
 			
 			}
-			_sql.append("limit ?,?");
+			_sql.append(" order by commodityID limit ?,? ");
 			
 			Number num;	//记录查询的总记录结果
 			num = (Number)qr.query(sql.toString(),params.toArray(), new ScalarHandler());

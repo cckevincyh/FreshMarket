@@ -62,7 +62,7 @@
 	  <c:forEach items="${order.orderItemList }" var="orderItem">
 			<tr bordercolor="rgb(78,78,78)" align="center">
 				<td width="15%">
-					<div style="width: 100px; height: 100px"><img src="<c:url value='${orderItem.commodity.url }'/>"  height="75"/></div>
+					<div style="width: 100px; height: 100px"><img src="${orderItem.commodity.url }"  height="75"/></div>
 				</td>
 				<td>商品名称：${orderItem.commodity.commodityName }</td>
 				<td>商品种类：${orderItem.commodity.commodityType.commodityTypeName }</td>
