@@ -87,10 +87,7 @@
 	<c:if test="${not empty sessionUser }">
 			<li class="menu-item">
 						<div class="menu">
-							<a class="menu-hd myinfo">
-								我的信息
-								<b></b>
-							</a>
+							<a class="menu-hd myinfo">我的信息</a>
 							<div id="menu-2" class="menu-bd">
 								<div class="menu-bd-panel">
 									<a href="<c:url value='/OrderServlet?method=myOrders'/>" target="body">我的订单</a>
@@ -110,7 +107,7 @@
 	<div class="w1210">
 		<div class="logo-info">
 			<a href="#" class="logo">
-				<img src="img/logo.jpg">
+				<img src="img/11.png">
 			</a>
 		</div>
 		<div class="search SZY-SEARCH-BOX">

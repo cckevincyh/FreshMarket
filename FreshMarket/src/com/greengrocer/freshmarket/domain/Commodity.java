@@ -6,6 +6,7 @@ import java.io.Serializable;
  *
  */
 public class Commodity implements Serializable{ //实现序列化是因为设置了session钝化
+
 	private int commodityID;			//商品编号
 	private CommodityType commodityType;	//商品种类
 	private String commodityName;			//商品名称
@@ -49,7 +50,12 @@ public class Commodity implements Serializable{ //实现序列化是因为设置
 	}
 
 	
-
+	@Override
+	public String toString() {
+		return "Commodity [commodityID=" + commodityID + ", commodityType="
+				+ commodityType + ", commodityName=" + commodityName
+				+ ", commodityPrice=" + commodityPrice + ", url=" + url + "]";
+	}
 	
 	
 }

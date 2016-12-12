@@ -51,6 +51,14 @@ public interface CommodityDao {
 	 * @return
 	 */
 	public PageBean<Commodity> queryCommodity(int pageCode, int pageSize,CommodityForm commodityForm);
+
+	
+	/**
+	 * 通过商品名称查询商品信息
+	 * @param commodityName
+	 * @return
+	 */
+	public Commodity findCommodityByName(String commodityName);
 	 
 
 

@@ -49,10 +49,17 @@ public class AdminCommodityTypeServlet extends BaseServlet {
 	public String addCommodityType(HttpServletRequest request, HttpServletResponse response){
 		//调用工具类，把上传的表单封装成一个bean对象
 		CommodityType commodityType = WebUtils.request2Bean(request, CommodityType.class);
-		//添加商品信息实体
-		service.addCommodityType(commodityType);
-		//重定向到展示的列表（先查询所有的商品信息再重定向）
-		return "r:/AdminCommodityTypeServlet?method=getAllCommodityTypes";
+		CommodityType type = service.findCommodityTypeByName(commodityType.getCommodityTypeName());
+		if(type==null){
+			//添加商品信息实体
+			service.addCommodityType(commodityType);
+			//重定向到展示的列表（先查询所有的商品信息再重定向）
+			return "r:/AdminCommodityTypeServlet?method=getAllCommodityTypes";	
+		}else{
+			request.setAttribute("message", "已存在该商品种类名称，添加失败!");
+			return "/message.jsp";
+		}
+		
 	}
 	
 	

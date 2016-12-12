@@ -38,5 +38,12 @@ public interface CommodityTypeDao {
 	 */
 	public void deleteCommodityType(String commodityTypeID);
 
+	/**
+	 * 根据商品种类名称查询商品中类信息
+	 * @param commodityTypeName
+	 * @return
+	 */
+	public CommodityType findCommodityTypeByName(String commodityTypeName);
+
 	
 }

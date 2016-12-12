@@ -47,7 +47,14 @@ public class UpdatePasswordForm {
 
 	public boolean validate(){
 		boolean isOK = true;
-		if(newpassword1==null || newpassword1.trim().equals("")){
+		if(oldpassword==null){
+			isOK = false;
+			errors.put("oldpassword", "原密码不能为空!!");
+		}else if(oldpassword.length()==0){
+			isOK = false;
+			errors.put("oldpassword", "原密码不能为空!!");
+		}
+		if(newpassword1==null){
 			isOK = false;
 			errors.put("newpassword1", "新密码密码不能为空!!");
 		}else{
@@ -57,7 +64,7 @@ public class UpdatePasswordForm {
 			}
 		}
 		
-		if(newpassword2==null || newpassword2.trim().equals("")){
+		if(newpassword2==null){
 			errors.put("newpassword2", "确认密码不能为空!!");
 			isOK = false;
 		}else{

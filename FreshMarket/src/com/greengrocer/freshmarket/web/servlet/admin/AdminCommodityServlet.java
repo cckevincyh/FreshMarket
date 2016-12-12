@@ -30,11 +30,18 @@ public class AdminCommodityServlet extends BaseServlet {
 			throws ServletException, IOException {
 		//调用工具类，把上传的表单封装成一个bean对象
 		CommodityForm commodityForm = WebUtils.uploadForm2Bean(request, CommodityForm.class);
-		//添加商品信息实体
-		service.addCommodity(commodityForm);
-		//重定向到展示的列表（先查询所有的商品信息再重定向）
-		return "r:/AdminCommodityServlet?method=findAllCommodity";
+		Commodity commodity = service.findCommodityByName(commodityForm.getCommodityName());
 		
+		if(commodity!=null && commodity.getCommodityName()==null){
+			//添加商品信息实体
+			service.addCommodity(commodityForm);
+			//重定向到展示的列表（先查询所有的商品信息再重定向）
+			return "r:/AdminCommodityServlet?method=findAllCommodity";
+		}else{
+		
+			request.setAttribute("message", "该商品名称存在，添加失败!");
+			return "/message.jsp";
+		}
 	}
 	
 	/**

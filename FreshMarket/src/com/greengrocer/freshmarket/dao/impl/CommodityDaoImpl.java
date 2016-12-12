@@ -101,7 +101,7 @@ public class CommodityDaoImpl implements CommodityDao{
 	public Commodity findCommodity(String commodityID){
 		try {
 			String sql = "SELECT * FROM  commodityType ,commodity WHERE " +
-					"commodityType.commodityTypeID = commodity.commodityTypeID AND CommodityID = ? order by commodityID";
+					"commodityType.commodityTypeID = commodity.commodityTypeID AND CommodityID = ?";
 			//查询出List的map集合
 			Map<String, Object> map = qr.query(sql, commodityID,new MapHandler());
 			//得到Commodity对象
@@ -208,6 +208,25 @@ public class CommodityDaoImpl implements CommodityDao{
 		}
 		
 		return pb;
+	}
+
+	
+	/**
+	 * 通过商品名称查询商品信息
+	 */
+	@Override
+	public Commodity findCommodityByName(String commodityName) {
+		try {
+			String sql = "SELECT * FROM commodity WHERE CommodityName = ? ";
+			//查询出List的map集合
+			Map<String, Object> map = qr.query(sql, commodityName,new MapHandler());
+			//得到Commodity对象
+			Commodity commodity = toCommodity(map);
+			return commodity;
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	

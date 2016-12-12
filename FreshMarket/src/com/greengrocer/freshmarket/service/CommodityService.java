@@ -66,4 +66,13 @@ public class CommodityService {
 		return commodityDao.queryCommodity(pageCode, pageSize, commodityForm);
 	}
 	
+	
+	/**
+	 * 查询商品信息
+	 * @param commodityID
+	 */
+	public Commodity findCommodityByName(String commodityName){
+		return commodityDao.findCommodityByName(commodityName);
+	}
+	
 }

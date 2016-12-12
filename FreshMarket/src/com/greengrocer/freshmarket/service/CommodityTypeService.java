@@ -75,6 +75,16 @@ public class CommodityTypeService {
 		commodityTypDao.deleteCommodityType(commodityTypeID);
 	}
 
+	
+	/**
+	 * 查询商品种类
+	 * @param commodityTypeID
+	 * @return 
+	 */
+	public CommodityType findCommodityTypeByName(String commodityTypeName) {
+		return commodityTypDao.findCommodityTypeByName(commodityTypeName);
+		
+	}
 
 	
 }

@@ -24,7 +24,11 @@ public class CommodityType implements Serializable{ //实现序列化是因为�
 	public void setCommodityTypeName(String commodityTypeName) {
 		this.commodityTypeName = commodityTypeName;
 	}
-	
+	@Override
+	public String toString() {
+		return "CommodityType [commodityTypeID=" + commodityTypeID
+				+ ", commodityTypeName=" + commodityTypeName + "]";
+	}
 	
 
 }
