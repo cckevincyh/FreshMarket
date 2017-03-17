@@ -26,3 +26,67 @@
 (2) 管理商品功能。管理员可以添加、修改、删除商品。
 
 (3) 管理商品种类功能，管理员可以添加、修改、删除商品种类。
+----------
+
+## 流程
+
+![image](https://github.com/cckevincyh/FreshMarket/blob/master/img/1.png)
+----------
+
+## 数据流图
+
+![image](https://github.com/cckevincyh/FreshMarket/blob/master/img/2.png)
+----------
+
+## 登录界面 
+
+![image](https://github.com/cckevincyh/FreshMarket/blob/master/img/login.png)
+----------
+## 注册界面
+
+![image](https://github.com/cckevincyh/FreshMarket/blob/master/img/regist.png)
+
+----------
+## 主界面
+
+![image](https://github.com/cckevincyh/FreshMarket/blob/master/img/index.png)
+
+----------
+
+## 个人信息界面
+
+![image](https://github.com/cckevincyh/FreshMarket/blob/master/img/info.png)
+
+----------
+
+## 收货地址
+
+![image](https://github.com/cckevincyh/FreshMarket/blob/master/img/address.png)
+
+----------
+
+## 购物车
+
+![image](https://github.com/cckevincyh/FreshMarket/blob/master/img/cart.png)
+
+----------
+## 结算
+
+![image](https://github.com/cckevincyh/FreshMarket/blob/master/img/Settlement.png)
+
+----------
+## 支付
+
+![image](https://github.com/cckevincyh/FreshMarket/blob/master/img/pay.png)
+
+----------
+## 我的订单
+
+![image](https://github.com/cckevincyh/FreshMarket/blob/master/img/order.png)
+
+----------
+
+## 后台
+
+![image](https://github.com/cckevincyh/FreshMarket/blob/master/img/admin.png)
+
